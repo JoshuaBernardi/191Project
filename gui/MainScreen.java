@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -48,6 +51,18 @@ public class MainScreen extends JFrame
 		mnuBar.add(bookMnu);
 		
 		//member menu
+		JMenu memberMnu = new JMenu("Member");
+		JMenuItem listAllMembersMnuItem = new JMenuItem("List all members");
+		JMenuItem addMemberMnuItem = new JMenuItem("Add Member");
+		JMenuItem editMemberMnuItem = new JMenuItem("Edit Member");
+			
+		memberMnu.add(listAllMembersMnuItem);
+		memberMnu.add(addMemberMnuItem);
+		memberMnu.add(editMemberMnuItem);
+			
+		mnuBar.add(memberMnu);
+		
+		//search menu
 		JMenu searchMnu = new JMenu("Search");
 		JMenuItem searchBookMnuItem = new JMenuItem("Search book");
 		JMenuItem searchMemberMnuItem = new JMenuItem("Search Member");
@@ -57,12 +72,79 @@ public class MainScreen extends JFrame
 			
 		mnuBar.add(searchMnu);
 		
-		//search menu
 		
 		//action menu
+		JMenu actionMnu = new JMenu("Action");
+		JMenuItem borrowBookMnuItem = new JMenuItem("Borrow book");
+		JMenuItem returnBookMnuItem = new JMenuItem("Return book");
+			
+		actionMnu.add(borrowBookMnuItem);
+		actionMnu.add(returnBookMnuItem);
+			
+		mnuBar.add(actionMnu);
+		
 		
 		//help manu
+		JMenu helpMnu = new JMenu("Help");
+		JMenuItem aboutMnuItem = new JMenuItem("About");
+		helpMnu.add(aboutMnuItem);
+		mnuBar.add(helpMnu);
+		
 		
 		setJMenuBar(mnuBar);
+		
+		//set action
+		exitMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+		});
+		listBooksMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new BooksListScreen(MainScreen.this));
+				
+			}
+		});
+		
+		//when user click Add book menu
+		addBookMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new AddBookScreen(MainScreen.this));
+				
+			}
+		});
+		//when borrow book item is clicked
+		borrowBookMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new BorrowBookScreen(MainScreen.this));
+				
+			}
+		});
+	}
+	
+	/**
+	 * open the screen
+	 * close this main screen
+	 * @param screen
+	 */
+	private void openScreen(JFrame screen) {
+		setVisible(false);
+		screen.setVisible(true);
 	}
 }

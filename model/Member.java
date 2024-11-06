@@ -1,3 +1,4 @@
+package model;
 /**
  * Member is the super class of Student, Professor
  */
