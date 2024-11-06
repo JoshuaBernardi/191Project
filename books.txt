@@ -1,0 +1,2 @@
+//book id; subject; title; author; publisher; copyright; edition; pages; ISBN
+1;History;World_War_II;Jonke;B&K;1958;1;190;0912232323

@@ -60,7 +60,11 @@ public class LoginScreen extends JFrame
 	}
 	
 	private void login() {
+		//success
+		MainScreen mainScreen = new MainScreen();
+		mainScreen.setVisible(true);
 		
+		setVisible(false);//close this login screen
 	}
 
 }
