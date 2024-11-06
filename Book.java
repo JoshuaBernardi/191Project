@@ -1,62 +1,72 @@
 /**
  * 
- */
-/**
+ * @author:
+ * Joshua Bernardi
+ * Zalma Farah
  * 
+ * Purpose: The Book class represents a book in the system
  */
 import java.util.Date;
 
 public class Book {
 	
-	private String title;
-	private String author;
-	private int totalCopies; //total num of copies of the book
-	private int availableCopies; //num books available
-	private Date dueDate;
+	/*
+	 * id of the book
+	 */
+	private int bookID;
 	
 	/**
-	 * 
-	 * 
-	 * @param title
-	 * @param author
-	 * @param totalCopies
+	 * subject of the book
 	 */
-	public Book(String title, String author, int totalCopies) {
-		
-		this.title = title;
-		this.author = author;
-		this.totalCopies = totalCopies;
-		this.availableCopies = totalCopies;
-		this.dueDate = null; //no due date if it is not checked out
-	}
-
+	private String subject;
 	
-	public String getTitle() {
-		
-		return title;
-	}
+	/**
+	 * title of the book
+	 */
+	private String title;
+	
+	/**
+	 * author
+	 */
+	private String author;
+	
+	/**
+	 * publisher
+	 */
+	private String publisher;
+	
+	/**
+	 * copyright
+	 */
+	private String copyright;
+	
+	/**
+	 * edition
+	 */
+	private int edition;
+	
+	/**
+	 * pages
+	 */
+	private int numPages;
+	
+	/**
+	 * ISBN
+	 */
+	private String isbn;
+	
+	/**
+	 * total number of copies of the book
+	 */
+	private int totalCopies; 
+	
+	/**
+	 * number of boo copies available
+	 */
+	private int availableCopies;
 	
 	
-	public String getAuthor() {
-		
-		return author;
-	}
-	
-	public int getTotalCopies() {
-		
-		return totalCopies;
-	}
-	
-	public int getAvailableCopies() {
-		
-		return availableCopies;
-	}
-	
-	public Date dueDate() {
-		
-		return dueDate;
-	}
-	
+	/*
 	public boolean checkOut(Date dueDate) {
 		
 		if(availableCopies > 0) {
@@ -83,5 +93,6 @@ public class Book {
 		
 		return dueDate != null && currentDate.after(dueDate); //checks if the due date is set and if the current date is after the due date 
 	}
+	*/
 }
 

@@ -1,15 +1,13 @@
 /**
- * 
- */
-
-/**
- * 
+ * Member is the super class of Student, Professor
  */
 public class Member {
 
 	private String name;
 	private String phoneNumber;
 	private int memberID;
+	private String password;
+	
 	
 	/**
 	 * @param 
