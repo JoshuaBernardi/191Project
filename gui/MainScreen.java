@@ -77,14 +77,16 @@ public class MainScreen extends JFrame
 		JMenu actionMnu = new JMenu("Action");
 		JMenuItem borrowBookMnuItem = new JMenuItem("Borrow book");
 		JMenuItem returnBookMnuItem = new JMenuItem("Return book");
+		JMenuItem reserveBookMnuItem = new JMenuItem("Reserve book");
 			
 		actionMnu.add(borrowBookMnuItem);
 		actionMnu.add(returnBookMnuItem);
+		actionMnu.add(reserveBookMnuItem);
 			
 		mnuBar.add(actionMnu);
 		
 		
-		//help manu
+		//help menu
 		JMenu helpMnu = new JMenu("Help");
 		JMenuItem aboutMnuItem = new JMenuItem("About");
 		helpMnu.add(aboutMnuItem);
@@ -134,6 +136,14 @@ public class MainScreen extends JFrame
 			{
 				openScreen(new BorrowBookScreen(MainScreen.this));
 				
+			}
+		});
+		
+		reserveBookMnuItem.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new ReserveBookScreen(MainScreen.this));
 			}
 		});
 	}
