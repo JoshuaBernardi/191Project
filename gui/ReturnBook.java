@@ -1,5 +1,16 @@
 package gui;
-
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -30,7 +41,7 @@ public class ReturnBook extends JFrame
 		btnReturnBook = new JButton("Return Book");
 		btnCancel = new JButton("Cancel");
 		
-		//
+		//sets up panel and layout
 		JPanel pnlMain = new JPanel();
 		pnlMain.setLayout(new GridLayout(5, 2, 10, 10));
 		
@@ -46,6 +57,8 @@ public class ReturnBook extends JFrame
 		pnlMain.add(btnReturnBook);
 		pnlMain.add(btnCancel);
 		
+		
+		//button actions
 		btnReturnBook.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e) {
@@ -53,7 +66,7 @@ public class ReturnBook extends JFrame
 			}
 		});
 		
-		//
+
 		btnCancel.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e) {
@@ -63,7 +76,7 @@ public class ReturnBook extends JFrame
 			}
 		});
 		
-		//
+		//frame setup
 		add(pnlMain);
 		setTitle("Return Book");
 		setSize (600,600);
@@ -90,7 +103,7 @@ public class ReturnBook extends JFrame
 		
 		boolean success = true;
 		
-		//
+		
 		if(success) {
 			JOptionPane.showMessageDialog(this, "Book returned successfully!\n" + "Book ID: " + bookID + "\n" + "Member ID: " + memberID + "\n" + 
 		"Return Date: " + returnDate, "Success", JOptionPane.INFORMATION_MESSAGE);

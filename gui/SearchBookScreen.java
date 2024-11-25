@@ -1,9 +1,23 @@
 package gui;
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class SearchBookScreen extends JFrame
@@ -12,6 +26,7 @@ public class SearchBookScreen extends JFrame
 	private JButton btnSearch;
 	private JButton btnCancel;
 	private MainScreen mainScreen;
+	private ArrayList<String> bookList;
 	
 	/*
 	 * 
@@ -20,8 +35,9 @@ public class SearchBookScreen extends JFrame
 	public SearchBookScreen(MainScreen mainScreen)
 	{
 		this.mainScreen = mainScreen;
+		bookList = new ArrayList<>();
 		
-		//
+		//sets up panel and layout
 		txtSearchBook = new JTextField(20);
 		btnSearch = new JButton("Search");
 		btnCancel = new JButton("Cancel");
@@ -43,6 +59,7 @@ public class SearchBookScreen extends JFrame
 		add(pnlButtons, BorderLayout.SOUTH);
 		
 	
+		//button actions
 		btnSearch.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -59,7 +76,7 @@ public class SearchBookScreen extends JFrame
 			}
 		});
 		
-		//
+		//frame setup
 		setTitle("Search Book");
 		setSize(600,600);
 		setLocationRelativeTo(null);
@@ -72,10 +89,52 @@ public class SearchBookScreen extends JFrame
 	 */
 	public void searchBook()
 	{
-		String searchBook = txtSearchBook.getText();
+		String searchBook = txtSearchBook.getText().trim();
 		
+		if(searchBook.isEmpty())
+		{
+			JOptionPane.showMessageDialog(this, "Please enter a book to search" , "Error" , JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		
+		boolean found = false;
 		
+		//search through the book list
+		for(String book: bookList)
+		{
+			if(book.equalsIgnoreCase(searchBook))
+			{
+				found = true;
+				break;
+			}
+		}
+		
+		//displays message based on search result
+		if (found)
+		{
+			JOptionPane.showMessageDialog(this, "Book Found: " + searchBook);
+			
+		} else {
+			JOptionPane.showMessageDialog(this, "No book found with that title");
+		}
+	   
+	}
+	
+	/*
+	 * 
+	 * 
+	 */
+	public static void main(String[] args)
+	{
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			
+			public void run()
+			{
+				MainScreen mainScreen = new MainScreen();
+				new SearchBookScreen(mainScreen).setVisible(false);
+			}
+		});
 	}
 	
 }	
