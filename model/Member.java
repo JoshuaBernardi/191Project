@@ -7,7 +7,6 @@ public class Member {
 	private String name;
 	private String phoneNumber;
 	private int memberID;
-	private String password;
 	
 	
 	/**
@@ -36,4 +35,28 @@ public class Member {
 		
 		return memberID;
 	}
+	
+	
+	
+	public void setName(String name)
+	{
+		this.name = name;
+		
+	}
+	
+	public void setPhoneNumber(String phoneNumber)
+	{
+		this.phoneNumber = phoneNumber;
+	}
+	
+	
+	@Override
+	public String toString()
+	{
+		return "Member ID: " + memberID + "\n" +
+				"Name: " + name + "\n" +
+				"Phone: " + phoneNumber;
+	}
 }
+
+

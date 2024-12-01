@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.util.*;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,12 +18,15 @@ public class FileDatabase extends Database
 	 * that allows to use ONE instance of FileDatabase in the whole system
 	 */
 	private static  FileDatabase db;
-
+	private List<Book> books;
+	private List<Member> member;
+	
 	@Override
 	public void initialize()
 	{
 		// read files
 		books = new ArrayList<Book>();
+		member = new ArrayList<>();
 		
 		
 		//will load from books.txt
