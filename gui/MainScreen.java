@@ -1,12 +1,23 @@
 package gui;
+
 /*
+ * Lead Author(s):
+ * @author Zalma Farah
+ * @author Joshua Bernardi
+ * * <<add additional lead authors here, with a full first and last name>>
  * 
+ *  Other contributors:
+ * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
  * 
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
+ * <<add more references here>>
  * 
- * 
- * 
- * 
+ * Version/date: 12/2/2024
+ * Responsibilities of class: This class represents the main screen of the library system. It contains a menu bar with options
+ *                            for managing books, members, searching, and tasks like borrowing or returning books. 
  * 
  */
 import java.awt.event.ActionEvent;
@@ -50,6 +61,7 @@ public class MainScreen extends JFrame
 		JMenuItem listAvailableBooksMenuItem = new JMenuItem("List available books");
 		JMenuItem addBookMnuItem = new JMenuItem("Add Book");
 		JMenuItem editBookMnuItem = new JMenuItem("Edit Book");
+		JMenuItem memberScreenMenuItem = new JMenuItem("Member Screen");
 		
 		bookMnu.add(listBooksMnuItem);
 		bookMnu.add(listBorrowedBooksMnuItem);
@@ -155,6 +167,24 @@ public class MainScreen extends JFrame
 				openScreen(new ReserveBookScreen(MainScreen.this));
 			}
 		});
+		
+		editMemberMnuItem.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				  openScreen(new EditMemberScreen(MainScreen.this));
+			  }
+			  
+			});
+		
+		addMemberMnuItem.addActionListener(new ActionListener()
+				{
+			      public void actionPerformed(ActionEvent e)
+			      {
+			    	  openScreen(new AddMemberScreen(MainScreen.this));
+			      }
+				});
+		
 	}
 	
 	/**

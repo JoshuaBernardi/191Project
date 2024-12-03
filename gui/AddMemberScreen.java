@@ -1,7 +1,24 @@
-/**
+package gui;
+/*
+ * Lead Author(s):
+ * @author Zalma Farah
+ * @author Joshua Bernardi
+ * * <<add additional lead authors here, with a full first and last name>>
+ * 
+ *  Other contributors:
+ * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
+ * 
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * 
+ * <<add more references here>>
+ * 
+ * Version/date: 12/2/2024
+ * Responsibilities of class: This class adds new members to the system while providing fields such as member ID,name, and phone number
  * 
  */
-package gui;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +30,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-
 import model.Member;
 import model.FileDatabase;
 
@@ -22,7 +38,7 @@ import model.FileDatabase;
 /**
  * 
  */
-public class MemberScreen extends JFrame{
+public class AddMemberScreen extends JFrame{
 
 	private JTextField txtMemberID;
 	private JTextField txtMemberName;
@@ -38,7 +54,7 @@ public class MemberScreen extends JFrame{
 	 * Constructor 
 	 * @param mainScreen The main screen reference
 	 */
-	public MemberScreen(MainScreen mainScreen)
+	public AddMemberScreen(MainScreen mainScreen)
 	{
 		
 		//intialize the text fields
@@ -135,7 +151,7 @@ public class MemberScreen extends JFrame{
 			public void run()
 			{
 				MainScreen mainScreen = new MainScreen();
-				new MemberScreen(mainScreen).setVisible(false);
+				new AddMemberScreen(mainScreen).setVisible(true);
 			}
 		});
 	}

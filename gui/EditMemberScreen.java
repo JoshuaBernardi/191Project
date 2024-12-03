@@ -1,7 +1,25 @@
-/**
+package gui;
+/*
+ * Lead Author(s):
+ * @author Zalma Farah
+ * @author Joshua Bernardi
+ * * <<add additional lead authors here, with a full first and last name>>
+ * 
+ *  Other contributors:
+ * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
+ * 
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * 
+ * <<add more references here>>
+ * 
+ * Version/date: 12/2/2024
+ * Responsibilities of class: This class is responsible for editing member details and allowing users to update a members name
+ *                            and phone number
  * 
  */
-package gui;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,7 +61,7 @@ public class EditMemberScreen extends JFrame{
 	 * @param member Reference to the member being edited
 	 */
 	
-	public EditMemberScreen(MainScreen mainScreen, Member member)
+	public EditMemberScreen(MainScreen mainScreen)
 	{
 		this.mainScreen = mainScreen;
 		this.member = member;
@@ -114,7 +132,7 @@ public void saveChanges()
 	
 	
 	mainScreen.setVisible(true);
-	setVisible(false);
+	setVisible(true);
  }
 }
 

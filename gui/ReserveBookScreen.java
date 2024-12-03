@@ -1,18 +1,26 @@
 package gui;
+
 /*
+ * Lead Author(s):
+ * @author Zalma Farah
+ * @author Joshua Bernardi
+ * * <<add additional lead authors here, with a full first and last name>>
  * 
+ *  Other contributors:
+ * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
  * 
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
+ * <<add more references here>>
  * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
+ * Version/date: 12/2/2024
+ * Responsibilities of class: This class provides a GUI interface for reserving books. It allows users to input book details,
+ *                            member information, and the reserve data. 
  * 
  */
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;

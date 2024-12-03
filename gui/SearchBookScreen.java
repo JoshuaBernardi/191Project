@@ -1,15 +1,23 @@
 package gui;
+
 /*
+ * Lead Author(s):
+ * @author Zalma Farah
+ * @author Joshua Bernardi
+ * * <<add additional lead authors here, with a full first and last name>>
  * 
+ *  Other contributors:
+ * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
  * 
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
+ * <<add more references here>>
  * 
- * 
- * 
- * 
- * 
- * 
- * 
+ * Version/date: 12/2/2024
+ * Responsibilities of class: This class provides a GUI for searching books in a library system and allows users to 
+ *                            input the book in the search bar and checks if the book exists in the list
  * 
  */
 
