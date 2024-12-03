@@ -1,5 +1,4 @@
 package gui;
-
 /*
  * Lead Author(s):
  * @author Zalma Farah
@@ -16,10 +15,10 @@ package gui;
  * <<add more references here>>
  * 
  * Version/date: 12/2/2024
- * Responsibilities of class: This class provides a GUI for adding book details to the library data base
+ * Responsibilities of class: 
+ *                            
  * 
  */
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,42 +29,50 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import model.Book;
 import model.FileDatabase;
 
-@SuppressWarnings("serial")
-public class AddBookScreen extends JFrame
+
+public class EditBookScreen extends JFrame 
 {
+
 	private JTextField txtSubject;
 	private JTextField txtTitle;
 	private JTextField txtAuthor;
 	private JTextField txtPublisher;
 	
-	/**
-	 * reference to main screen
-	 */
+
+	 //Reference to main screen
+	 
 	private MainScreen mainScreen;
 	
+	//Reference to the book being edited
+	
+	private Book book;
+	
 	/**
-	 * constructor
+	 * Constructor 
+	 * @param mainScreen The main screen 
+	 * @param book The book being edited
 	 */
-	public AddBookScreen(MainScreen mainScreen) {
-
+	
+	public EditBookScreen(MainScreen mainScreen, Book book)
+	{
 		this.mainScreen = mainScreen;
+		this.book = book;
 		
-		
-		//TODO, add more fields
-		txtSubject = new JTextField();
-		txtTitle = new JTextField();
-		txtAuthor = new JTextField();
-		txtPublisher = new JTextField();
+		txtSubject = new JTextField(book.getSubject());
+		txtTitle = new JTextField(book.getTitle());
+		txtAuthor = new JTextField(book.getAuthor());
+		txtPublisher = new JTextField(book.getPublisher());
 		
 		//buttons
-		JButton btnAddBook = new JButton("Add Book");
+		JButton btnSaveChanges = new JButton("Save Changes");
 		JButton btnCancel = new JButton("Cancel");
-		// first row subject, 2nd row title, 3rd row author, 4th row publisher, 5th row for add book and cancel
+		
 		JPanel pnlMain = new JPanel();
-		pnlMain.setLayout(new GridLayout(5, 2, 10, 10)); //TODO: add more columns
+		pnlMain.setLayout(new GridLayout(5, 2, 10, 10));
 		
 		pnlMain.add(new JLabel("Subject: "));
 		pnlMain.add(txtSubject);
@@ -79,19 +86,17 @@ public class AddBookScreen extends JFrame
 		pnlMain.add(new JLabel("Publisher: "));
 		pnlMain.add(txtPublisher);
 		
-		pnlMain.add(btnAddBook);
+		pnlMain.add(btnSaveChanges);
 		pnlMain.add(btnCancel);
-	
-		//github 5
 		
-		//add action for button
-		btnAddBook.addActionListener(new ActionListener()
+		//add action listeners for buttons
+		btnSaveChanges.addActionListener(new ActionListener()
 		{
 			
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				addBook();
+				saveChanges();
 			}
 		});
 		//cancel button when user clicks button event cancel action is performed 
@@ -108,34 +113,40 @@ public class AddBookScreen extends JFrame
 		
 		add(pnlMain);		
 		
-		setTitle("Add Book Screen");
+		setTitle("Edit Book Screen");
 		setSize(600, 600); //width and height of screen
 		setLocationRelativeTo(null); //center the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	//comment
-	/**test github change 1
-	 * add book
-	 */
-	private void addBook() {
-		String subject = txtSubject.getText();
-		String title = txtTitle.getText();
-		String author = txtAuthor.getText();
-		String publisher = txtPublisher.getText();
 		
-		Book book = new Book(200, subject, title, author, publisher, author, 0, 0, 
-				"", 10, 10);
 		
-		FileDatabase db = FileDatabase.getDB();
-		db.getBooks().add(book);
-		
-		db.save();
-		
-		JOptionPane.showMessageDialog(this, "Book has been added successfully");
-		
-		//close this screen
-		mainScreen.setVisible(true);
-		setVisible(false);
-		
-	}
+		/*
+		 * Save changes to the book 
+		 * 
+		 */
+		private void saveChanges()
+		{
+			String subject = txtSubject.getText();
+			String title = txtTitle.getText();
+			String author = txtAuthor.getText();
+			String publisher = txtPublisher.getText();
+			
+			//updates the books fields with new data 
+			book.setSubject(subject);
+			book.setTitle(title);
+			book.setAuthor(author);
+			book.setPublisher(publisher);
+			
+			//save the updated book to the data base
+			FileDatabase db = FileDatabase.getDB();
+			db.save();
+			
+			JOptionPane.showMessageDialog(this, "Book details updated successfully.");
+			
+			
+			//close the screen and returns it to the main screen
+			mainScreen.setVisible(true);
+			dispose();
+		}
+}
+	
 }

@@ -1,5 +1,25 @@
 package gui;
 
+/*
+ * Lead Author(s):
+ * @author Zalma Farah
+ * @author Joshua Bernardi
+ * * <<add additional lead authors here, with a full first and last name>>
+ * 
+ *  Other contributors:
+ * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
+ * 
+ * References:
+ * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
+ * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
+ * 
+ * <<add more references here>>
+ * 
+ * Version/date: 12/2/2024
+ * Responsibilities of class: This class provides a GUI for returning a book, including fields such as book ID, member ID, and
+ *                            the return date
+ * 
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -17,7 +37,7 @@ public class ReturnBook extends JFrame
 	
 	/*
 	 * 
-	 * 
+	 * @param
 	 */
 	public ReturnBook(MainScreen mainScreen) {
 		
@@ -30,7 +50,7 @@ public class ReturnBook extends JFrame
 		btnReturnBook = new JButton("Return Book");
 		btnCancel = new JButton("Cancel");
 		
-		//
+		//sets up panel and layout
 		JPanel pnlMain = new JPanel();
 		pnlMain.setLayout(new GridLayout(5, 2, 10, 10));
 		
@@ -46,6 +66,8 @@ public class ReturnBook extends JFrame
 		pnlMain.add(btnReturnBook);
 		pnlMain.add(btnCancel);
 		
+		
+		//button actions
 		btnReturnBook.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e) {
@@ -53,7 +75,7 @@ public class ReturnBook extends JFrame
 			}
 		});
 		
-		//
+
 		btnCancel.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e) {
@@ -63,7 +85,7 @@ public class ReturnBook extends JFrame
 			}
 		});
 		
-		//
+		//frame setup
 		add(pnlMain);
 		setTitle("Return Book");
 		setSize (600,600);
@@ -74,7 +96,7 @@ public class ReturnBook extends JFrame
 	
 	/*
 	 * 
-	 * 
+	 * @param
 	 */
 	public void returnBook()
 	{
@@ -90,7 +112,7 @@ public class ReturnBook extends JFrame
 		
 		boolean success = true;
 		
-		//
+		
 		if(success) {
 			JOptionPane.showMessageDialog(this, "Book returned successfully!\n" + "Book ID: " + bookID + "\n" + "Member ID: " + memberID + "\n" + 
 		"Return Date: " + returnDate, "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -106,6 +128,10 @@ public class ReturnBook extends JFrame
 	
 	}
 	
+	/*
+	 * 
+	 * 
+	 */
 	public static void main(String[] args) {
 		
 		MainScreen mainScreen = new MainScreen();
