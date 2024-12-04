@@ -192,6 +192,15 @@ public class MainScreen extends JFrame
 			}
 		});
 		
+		editMemberMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new EditMemberScreen(MainScreen.this));
+			}
+		});
 	}
 	
 	/**
