@@ -12,6 +12,19 @@ public abstract class Database
 	protected List<Book> books;
 	
 	/**
+	 * list of users
+	 */
+	protected List<User> users;
+	
+	/**
+	 * @return the users
+	 */
+	public List<User> getUsers()
+	{
+		return users;
+	}
+
+	/**
 	 * list of borrowed books
 	 */
 	protected List<BorrowedBook> borrowedBooks;

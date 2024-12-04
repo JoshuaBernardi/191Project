@@ -181,6 +181,17 @@ public class MainScreen extends JFrame
 				
 			}
 		});
+		
+		listAllMembersMnuItem .addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new MemberListScreen(MainScreen.this));
+			}
+		});
+		
 	}
 	
 	/**

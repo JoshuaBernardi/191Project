@@ -4,12 +4,17 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.security.auth.login.LoginException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import model.FileDatabase;
+import model.User;
 
 /**
  * Login Screen
@@ -47,7 +52,15 @@ public class LoginScreen extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				login();
+				try
+				{
+					login();
+				}
+				catch (LoginException e1)
+				{
+					JOptionPane.showMessageDialog(LoginScreen.this, "Invalid user id, password. Please enter again");
+					return;
+				}
 			}
 		});
 		
@@ -59,7 +72,23 @@ public class LoginScreen extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	private void login() {
+	private void login() throws LoginException {
+		
+		boolean success = false;
+		String id = txtUserID.getText();
+		String pass = txtPassword.getText();
+		
+		for (User user: FileDatabase.getDB().getUsers()) {
+			if (user.getUserID().equals(id) && user.getPassword().equals(pass)) {
+				success = true;
+				break;
+			}
+		}
+		
+		if (!success) {
+			throw new LoginException();
+		}
+		
 		//success
 		MainScreen mainScreen = new MainScreen();
 		mainScreen.setVisible(true);

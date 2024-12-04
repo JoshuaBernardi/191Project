@@ -131,6 +131,37 @@ public class FileDatabase extends Database
 			e.printStackTrace();
 		}
 		
+		users = new ArrayList<User>();
+		
+		//will load from members.txt
+		try
+		{
+			Scanner scanner = new Scanner(new File("users.txt"));
+			
+			while (scanner.hasNext()) {
+				
+				String line = scanner.nextLine();
+				String[] data = line.split(";");
+				
+				//user id, pass
+				try
+				{
+					User user = new User(data[0], data[1]);
+					users.add(user);
+				}
+				catch (Exception e)
+				{
+					throw new DataException();
+				}
+			}
+			
+			scanner.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
