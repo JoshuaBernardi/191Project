@@ -201,6 +201,17 @@ public class MainScreen extends JFrame
 				openScreen(new EditMemberScreen(MainScreen.this));
 			}
 		});
+		
+		searchBookMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new SearchBooksScreen(MainScreen.this));
+				
+			}
+		});
 	}
 	
 	/**
