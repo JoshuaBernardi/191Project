@@ -1,5 +1,6 @@
 200;science;space;bill nye;nasa;bill nye;0;0;;10;10
-201;1;1;1;1;1;0;0;;10;10
+201;History;abc;vcx;qaz;1;0;0;;10;10
 202;math;trig101;bill nye;byu university;bill nye;0;0;;10;10
 203;science;space 101;mike burger;spaceology magazine;mike burger;0;0;;10;10
 204;History;history 1000bc;kyle pickles;bbc;kyle pickles;0;0;;10;10
+205;Math;;;;;0;0;;10;10
