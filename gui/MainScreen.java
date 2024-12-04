@@ -212,6 +212,16 @@ public class MainScreen extends JFrame
 				
 			}
 		});
+		
+		searchMemberMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new SearchMembersScreen(MainScreen.this));
+			}
+		});
 	}
 	
 	/**

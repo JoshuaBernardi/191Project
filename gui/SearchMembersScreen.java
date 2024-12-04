@@ -18,12 +18,13 @@ import javax.swing.JTextField;
 import model.Book;
 import model.Database;
 import model.FileDatabase;
+import model.Member;
 
 /**
- * This screen shows all books in the system
+ * This screen searches all members in the system
  */
 @SuppressWarnings("serial")
-public class SearchBooksScreen extends JFrame
+public class SearchMembersScreen extends JFrame
 {
 	/**
 	 * database reference
@@ -31,7 +32,7 @@ public class SearchBooksScreen extends JFrame
 	private FileDatabase database;
 	
 	/**
-	 * key to search like the substring in author, title, publisher...
+	 * key to search like the substring in name, address, phone, email ...
 	 */
 	private JTextField txtKey; 
 	
@@ -43,11 +44,11 @@ public class SearchBooksScreen extends JFrame
 	/**
 	 * constructor
 	 */
-	public SearchBooksScreen(MainScreen mainScreen) {
+	public SearchMembersScreen(MainScreen mainScreen) {
 		
 		this.mainScreen = mainScreen;
 		
-		setTitle("Library System - Search books");
+		setTitle("Library System - Search members");
 		setSize(1000, 800);
 		setLocationRelativeTo(null); //center the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,10 +84,9 @@ public class SearchBooksScreen extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				searchBooks();
+				searchMembers();
 			}
 		});
-		
 		
 		JButton btnBack = new JButton("Back");
 		JPanel bottomPanel = new JPanel();
@@ -108,37 +108,38 @@ public class SearchBooksScreen extends JFrame
 	}
 	
 	/**
-	 * search show books on the screen
+	 * search members on the screen
 	 */
-	public void searchBooks() {
+	public void searchMembers() {
+
 		
-				
-		List<Book> allBooks = database.getBooks();
-		List<Book> books = new ArrayList<Book>();
+		List<Member> allMembers = database.getMembers();
+		List<Member> members = new ArrayList<>();
 		
 		String key = txtKey.getText();
 		if (key.isEmpty()) {
-			books = allBooks;
+			members = allMembers;
 		}else {
-			for (Book book: allBooks) {
-				if (book.getAuthor().contains(key) || book.getTitle().contains(key) ||
-						book.getPublisher().contains(key)) {
-					books.add(book);
+			for (Member member: allMembers) {
+				if (member.getName().contains(key) || member.getPhoneNumber().contains(key) ||
+						member.getAddress().contains(key) || member.getEmail().contains(key)) {
+					members.add(member);
 				}
 			}
 		}
 		
-		BookTableModel model = new BookTableModel(books);
-		JTable bookTable = new JTable(model);
+		
+		MemberTableModel model = new MemberTableModel(members);
+		JTable memberTable = new JTable(model);
 		
 		//create panel to contain the table
 		JScrollPane centerPanel = new JScrollPane();
-		centerPanel.setViewportView(bookTable);;
+		centerPanel.setViewportView(memberTable);;
 		
 		//put as the center
 		add(centerPanel, BorderLayout.CENTER);
 		
-		//to refresh the screen
+		//refresh screen
 		invalidate();
 		validate();
 	}
