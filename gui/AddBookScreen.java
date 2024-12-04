@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +20,7 @@ import model.FileDatabase;
 @SuppressWarnings("serial")
 public class AddBookScreen extends JFrame
 {
-	private JTextField txtSubject;
+	private JComboBox<String> cboSubject;
 	private JTextField txtTitle;
 	private JTextField txtAuthor;
 	private JTextField txtPublisher;
@@ -37,7 +39,7 @@ public class AddBookScreen extends JFrame
 		
 		
 		//TODO, add more fields
-		txtSubject = new JTextField();
+		cboSubject = new JComboBox<>(FileDatabase.getDB().getSubjects());
 		txtTitle = new JTextField();
 		txtAuthor = new JTextField();
 		txtPublisher = new JTextField();
@@ -50,7 +52,7 @@ public class AddBookScreen extends JFrame
 		pnlMain.setLayout(new GridLayout(5, 2, 10, 10)); //TODO: add more columns
 		
 		pnlMain.add(new JLabel("Subject: "));
-		pnlMain.add(txtSubject);
+		pnlMain.add(cboSubject);
 		
 		pnlMain.add(new JLabel("Title: "));
 		pnlMain.add(txtTitle);
@@ -100,12 +102,20 @@ public class AddBookScreen extends JFrame
 	 * add book
 	 */
 	private void addBook() {
-		String subject = txtSubject.getText();
+		String subject = (String)cboSubject.getSelectedItem();
 		String title = txtTitle.getText();
 		String author = txtAuthor.getText();
 		String publisher = txtPublisher.getText();
 		
-		Book book = new Book(200, subject, title, author, publisher, author, 0, 0, 
+		int bookID = 0;
+		for (Book book : FileDatabase.getDB().getBooks()) {
+			if (book.getBookID() > bookID) {
+				bookID = book.getBookID();
+			}
+		}
+		bookID += 1;
+		
+		Book book = new Book(bookID, subject, title, author, publisher, author, 0, 0, 
 				"", 10, 10);
 		
 		FileDatabase db = FileDatabase.getDB();

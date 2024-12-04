@@ -114,6 +114,29 @@ public class MainScreen extends JFrame
 			}
 		});
 		
+		listBorrowedBooksMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new BorrowedBooksListScreen(MainScreen.this));
+				
+			}
+		});
+		
+		listAvailableBooksMenuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new AvailableBooksListScreen(MainScreen.this));
+				
+			}
+		});
+		
+		
 		//when user click Add book menu
 		addBookMnuItem.addActionListener(new ActionListener()
 		{

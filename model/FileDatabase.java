@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import exception.DataException;
 
 public class FileDatabase extends Database
 {
@@ -17,9 +21,11 @@ public class FileDatabase extends Database
 	 * that allows to use ONE instance of FileDatabase in the whole system
 	 */
 	private static  FileDatabase db;
+	
+	public static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
 	@Override
-	public void initialize()
+	public void initialize() throws DataException
 	{
 		// read files
 		books = new ArrayList<Book>();
@@ -54,6 +60,44 @@ public class FileDatabase extends Database
 		}
 		
 		
+		borrowedBooks = new ArrayList<>();
+		
+		
+		//will load from books.txt
+		try
+		{
+			Scanner scanner = new Scanner(new File("borrowed_books.txt"));
+			
+			while (scanner.hasNext()) {
+				
+				String line = scanner.nextLine();
+				String[] data = line.split(";");
+				
+				//user id, book id, borrowed date, return date
+				try
+				{
+					BorrowedBook bb = new BorrowedBook(Integer.parseInt(data[0]), 
+							Integer.parseInt(data[1]), sdf.parse(data[2]), null);
+					if (data.length == 4) {
+						bb.setReturnedDate(sdf.parse(data[3]));
+					}
+					
+					borrowedBooks.add(bb);
+				}
+				catch (Exception e)
+				{
+					throw new DataException();
+				}
+			}
+			
+			scanner.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		
+		subjects = new String[]{"Math", "Science", "History", "Art", "Cooking", "Language", "Cars"};
 		
 		
 	}
@@ -94,6 +138,25 @@ public class FileDatabase extends Database
 			}
 			writer.close();
 			
+			
+			writer = new FileWriter("borrowed_books.txt");
+			
+			for (BorrowedBook bb: borrowedBooks) {
+				writer.write(String.valueOf(bb.getUserID()));
+				writer.write(";");
+				writer.write(String.valueOf(bb.getBookID()));
+				writer.write(";");
+				writer.write(sdf.format(bb.getBorrowedDate()));
+				if (bb.getReturnedDate() != null) {
+					writer.write(";");
+					writer.write(sdf.format(bb.getReturnedDate()));
+				}
+				
+				writer.write(System.lineSeparator());
+				
+			}
+			writer.close();
+		
 		}
 		catch (IOException e)
 		{
@@ -108,7 +171,14 @@ public class FileDatabase extends Database
 	public static FileDatabase getDB() {
 		if (db == null) {
 			db = new FileDatabase();
-			db.initialize();
+			try
+			{
+				db.initialize();
+			}
+			catch (DataException e)
+			{
+				e.printStackTrace();
+			}
 		}
 		
 		return db;
