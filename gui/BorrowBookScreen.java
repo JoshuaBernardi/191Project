@@ -3,6 +3,7 @@ package gui;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -12,8 +13,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.Book;
 import model.BorrowedBook;
+import model.Configuration;
 import model.FileDatabase;
+import model.Member;
 
 @SuppressWarnings("serial")
 public class BorrowBookScreen extends JFrame
@@ -41,6 +45,14 @@ public class BorrowBookScreen extends JFrame
 		txtMemberID = new JTextField();
 		txtBorrowDate = new JTextField();
 		txtReturnDate = new JTextField();
+		
+		txtBorrowDate.setText(FileDatabase.sdf.format(Configuration.currentDate));
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(Configuration.currentDate);
+		cal.add(Calendar.DATE, 7);
+		
+		txtReturnDate.setText(FileDatabase.sdf.format(cal.getTime()));
 		
 		//buttons
 		JButton btnBorrowBook = new JButton("Borrow Book");
@@ -136,9 +148,56 @@ public class BorrowBookScreen extends JFrame
 		}
 		
 		Date dReturnedDate = null;
+		try {
+			dReturnedDate = FileDatabase.sdf.parse(returnDate);
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this, "Return Date must be in MM/DD/YYYY format");
+			return;
+		}
+		
+		Member member = null;
+		for (Member mem : FileDatabase.getDB().getMembers()) {
+			if (mem.getMemberID() == iMemberID) {
+				member = mem;
+				break;
+			}
+		}
+		
+		Book book = null;
+		
+		if (member == null) {
+			JOptionPane.showMessageDialog(this, "Member ID not found!");
+			return;
+		}
+		
+		for (Book b: FileDatabase.getDB().getBooks()) {
+			if (b.getBookID() == iBookID) {
+				book = b;
+				break;
+			}
+		}
+		
+		if (book == null) {
+			JOptionPane.showMessageDialog(this, "Book with ID not found!");
+		}
+		
+		//borrow only once
+		boolean canBorrow = true;
+		for (BorrowedBook bBook: FileDatabase.getDB().getBorrowedBooks()) {
+			if (bBook.getBookID() == iBookID && bBook.getReturned().equals("No")) {
+				canBorrow = false;
+			}
+		}
+		
+		if (!canBorrow) {
+			JOptionPane.showMessageDialog(this, "The book has been borrowed already");
+			return;
+		}
+		
 		
 		FileDatabase.getDB().getBorrowedBooks().add(new BorrowedBook(iMemberID, iBookID, 
-				dBorrowedDate, dReturnedDate));
+				member.getName(), book.getTitle(),
+				dBorrowedDate, dReturnedDate, "No"));
 		FileDatabase.getDB().save();
 		
 		//

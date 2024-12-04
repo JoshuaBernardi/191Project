@@ -77,10 +77,8 @@ public class FileDatabase extends Database
 				try
 				{
 					BorrowedBook bb = new BorrowedBook(Integer.parseInt(data[0]), 
-							Integer.parseInt(data[1]), sdf.parse(data[2]), null);
-					if (data.length == 4) {
-						bb.setReturnedDate(sdf.parse(data[3]));
-					}
+							Integer.parseInt(data[1]), data[2], data[3],
+							sdf.parse(data[4]), sdf.parse(data[5]), data[6]);
 					
 					borrowedBooks.add(bb);
 				}
@@ -208,11 +206,15 @@ public class FileDatabase extends Database
 				writer.write(";");
 				writer.write(String.valueOf(borrowedBook.getBookID()));
 				writer.write(";");
+				writer.write(borrowedBook.getMemberName());
+				writer.write(";");
+				writer.write(borrowedBook.getBookTitle());
+				writer.write(";");
 				writer.write(sdf.format(borrowedBook.getBorrowedDate()));
-				if (borrowedBook.getReturnedDate() != null) {
-					writer.write(";");
-					writer.write(sdf.format(borrowedBook.getReturnedDate()));
-				}
+				writer.write(";");
+				writer.write(sdf.format(borrowedBook.getReturnedDate()));
+				writer.write(";");
+				writer.write(borrowedBook.getReturned());
 				
 				writer.write(System.lineSeparator());
 				

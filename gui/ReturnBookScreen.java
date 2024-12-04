@@ -8,6 +8,7 @@ import com.toedter.calendar.JCalendar;
 
 import model.Book;
 import model.BorrowedBook;
+import model.Configuration;
 import model.FileDatabase;
 
 import java.awt.event.ActionListener;
@@ -39,9 +40,7 @@ public class ReturnBookScreen extends JFrame
 		txtMemberID = new JTextField(20);
 		calReturnDate = new JCalendar();
 		
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, 7);
-		calReturnDate.setDate(cal.getTime());
+		calReturnDate.setDate(Configuration.currentDate);
 		
 		calReturnDate.addPropertyChangeListener(new PropertyChangeListener()
 		{

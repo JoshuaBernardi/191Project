@@ -84,25 +84,17 @@ public class BorrowedBooksListScreen extends JFrame
 		
 		setLayout(new BorderLayout());
 		
-		List<Book> allBooks = database.getBooks();
-		List<BorrowedBook> borrowedBooks = database.getBorrowedBooks();
+		List<BorrowedBook> allBorrowedBooks = database.getBorrowedBooks();
+		List<BorrowedBook> borrowedBooks = new ArrayList<BorrowedBook>();
 		
-		List<Book> books = new ArrayList<Book>();
-		for (BorrowedBook bb: borrowedBooks) {
-			
-			if (bb.getReturnedDate() != null) { //this  book has been returned
-				continue;
-			}
-			for (Book b: allBooks) {
-				if (bb.getBookID() == b.getBookID()) {
-					books.add(b);
-					break;
-				}
+		for (BorrowedBook b: allBorrowedBooks) {
+			if (b.getReturned().equals("No")) {
+				borrowedBooks.add(b);
 			}
 		}
 		
 		
-		BookTableModel model = new BookTableModel(books);
+		BorrowedBookTableModel model = new BorrowedBookTableModel(borrowedBooks);
 		JTable bookTable = new JTable(model);
 		
 		//create panel to contain the table
