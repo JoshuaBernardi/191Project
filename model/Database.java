@@ -17,6 +17,19 @@ public abstract class Database
 	protected List<BorrowedBook> borrowedBooks;
 	
 	/**
+	 * list of members
+	 */
+	protected List<Member> members;
+	
+	/**
+	 * @return the members
+	 */
+	public List<Member> getMembers()
+	{
+		return members;
+	}
+
+	/**
 	 * list of the subjects
 	 */
 	protected String[] subjects;

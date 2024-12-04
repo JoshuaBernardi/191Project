@@ -63,7 +63,7 @@ public class FileDatabase extends Database
 		borrowedBooks = new ArrayList<>();
 		
 		
-		//will load from books.txt
+		//will load from borrowed books.txt
 		try
 		{
 			Scanner scanner = new Scanner(new File("borrowed_books.txt"));
@@ -99,6 +99,37 @@ public class FileDatabase extends Database
 		
 		subjects = new String[]{"Math", "Science", "History", "Art", "Cooking", "Language", "Cars"};
 		
+		members = new ArrayList<Member>();
+		
+		//will load from members.txt
+		try
+		{
+			Scanner scanner = new Scanner(new File("members.txt"));
+			
+			while (scanner.hasNext()) {
+				
+				String line = scanner.nextLine();
+				String[] data = line.split(";");
+				
+				//member id, pass, name, phone, address, email
+				try
+				{
+					Member member = new Member(Integer.parseInt(data[0])
+										, data[1], data[2], data[3], data[4], data[5]);
+					members.add(member);
+				}
+				catch (Exception e)
+				{
+					throw new DataException();
+				}
+			}
+			
+			scanner.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -141,16 +172,36 @@ public class FileDatabase extends Database
 			
 			writer = new FileWriter("borrowed_books.txt");
 			
-			for (BorrowedBook bb: borrowedBooks) {
-				writer.write(String.valueOf(bb.getUserID()));
+			for (BorrowedBook borrowedBook: borrowedBooks) {
+				writer.write(String.valueOf(borrowedBook.getUserID()));
 				writer.write(";");
-				writer.write(String.valueOf(bb.getBookID()));
+				writer.write(String.valueOf(borrowedBook.getBookID()));
 				writer.write(";");
-				writer.write(sdf.format(bb.getBorrowedDate()));
-				if (bb.getReturnedDate() != null) {
+				writer.write(sdf.format(borrowedBook.getBorrowedDate()));
+				if (borrowedBook.getReturnedDate() != null) {
 					writer.write(";");
-					writer.write(sdf.format(bb.getReturnedDate()));
+					writer.write(sdf.format(borrowedBook.getReturnedDate()));
 				}
+				
+				writer.write(System.lineSeparator());
+				
+			}
+			writer.close();
+			
+			writer = new FileWriter("members.txt");
+			
+			for (Member member: members) {
+				writer.write(String.valueOf(member.getMemberID()));
+				writer.write(";");
+				writer.write(member.getPassword());
+				writer.write(";");
+				writer.write(member.getName());
+				writer.write(";");
+				writer.write(member.getPhoneNumber());
+				writer.write(";");
+				writer.write(member.getAddress());
+				writer.write(";");
+				writer.write(member.getEmail());
 				
 				writer.write(System.lineSeparator());
 				

@@ -159,6 +159,17 @@ public class MainScreen extends JFrame
 			}
 		});
 		
+		addMemberMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new AddMemberScreen(MainScreen.this));
+				
+			}
+		});
+		
 		//when borrow book item is clicked
 		borrowBookMnuItem.addActionListener(new ActionListener()
 		{
