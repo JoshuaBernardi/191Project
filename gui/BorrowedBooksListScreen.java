@@ -90,6 +90,9 @@ public class BorrowedBooksListScreen extends JFrame
 		List<Book> books = new ArrayList<Book>();
 		for (BorrowedBook bb: borrowedBooks) {
 			
+			if (bb.getReturnedDate() != null) { //this  book has been returned
+				continue;
+			}
 			for (Book b: allBooks) {
 				if (bb.getBookID() == b.getBookID()) {
 					books.add(b);

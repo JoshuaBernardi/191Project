@@ -1,15 +1,27 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import com.toedter.calendar.JCalendar;
+
+import model.Configuration;
+import model.FileDatabase;
 
 public class MainScreen extends JFrame
 {
+	private JLabel lblSystemDate = new JLabel();
 	
 	public MainScreen() {
 		
@@ -84,6 +96,7 @@ public class MainScreen extends JFrame
 		mnuBar.add(actionMnu);
 		
 		
+		
 		//help manu
 		JMenu helpMnu = new JMenu("Help");
 		JMenuItem aboutMnuItem = new JMenuItem("About");
@@ -91,7 +104,33 @@ public class MainScreen extends JFrame
 		mnuBar.add(helpMnu);
 		
 		
+		//set date
+		JMenu configMnu = new JMenu("Configuration");
+
+		
+		JMenuItem setDateMnuItem = new JMenuItem("Set System Date");
+		configMnu.add(setDateMnuItem);
+			
+		mnuBar.add(configMnu);	
+			
+		mnuBar.add(new JLabel(" "));
+		mnuBar.add(lblSystemDate);
+		
+		lblSystemDate.setText("Current Date: " + 
+				FileDatabase.sdf.format(Configuration.currentDate));
+		
 		setJMenuBar(mnuBar);
+		
+		//allow user to set date
+		setDateMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				setDate();
+			}
+		});
 		
 		//set action
 		exitMnuItem.addActionListener(new ActionListener()
@@ -222,6 +261,61 @@ public class MainScreen extends JFrame
 				openScreen(new SearchMembersScreen(MainScreen.this));
 			}
 		});
+		
+		aboutMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(MainScreen.this, "Author: Joshua Bernardi, "
+						+ "Zalma Farah. Copyright @2024");
+			}
+		});
+		
+		returnBookMnuItem.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				openScreen(new ReturnBookScreen(MainScreen.this));
+			}
+		});
+	}
+	
+	private void setDate() {
+		
+		JFrame frame = new JFrame("Set up system date");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(40, 40);
+		frame.setLayout(new FlowLayout());
+		
+		JDialog dialog = new JDialog(frame, "Set Date", true);
+		dialog.setSize(300, 300);
+		dialog.setLayout(new BorderLayout());
+		
+		JCalendar calendar = new JCalendar();
+		calendar.setDate(Configuration.currentDate);
+		
+		JButton btnSelect = new JButton("Select Date");
+		btnSelect.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				Configuration.currentDate = calendar.getDate();
+				lblSystemDate.setText("Current Date: " + 
+						FileDatabase.sdf.format(Configuration.currentDate));
+				dialog.dispose();
+			}
+		});
+		dialog.add(calendar, BorderLayout.CENTER);
+		dialog.add(btnSelect, BorderLayout.SOUTH);
+		
+		dialog.setVisible(true);
+		frame.setVisible(true);
 	}
 	
 	/**

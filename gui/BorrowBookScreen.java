@@ -149,10 +149,8 @@ public class BorrowBookScreen extends JFrame
 			JOptionPane.showMessageDialog(this, "Failed to borrow the book. Please check the details." , "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		//reset
-		txtBookID.setText(" ");
-		txtMemberID.setText(" ");
-		txtBorrowDate.setText("");
-		txtReturnDate.setText(" ");
+		//close this screen
+		mainScreen.setVisible(true);
+		setVisible(false);
 	}
 }

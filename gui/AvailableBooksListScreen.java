@@ -94,7 +94,7 @@ public class AvailableBooksListScreen extends JFrame
 			boolean found = false;
 			
 			for (BorrowedBook bb: borrowedBooks) {
-				if (bb.getBookID() == b.getBookID()) {
+				if (bb.getBookID() == b.getBookID() && bb.getReturnedDate() == null) {
 					found = true;
 					break;
 				}
