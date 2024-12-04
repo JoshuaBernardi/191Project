@@ -143,14 +143,14 @@ public class ReturnBookScreen extends JFrame
 		
 		//search book in borrowed books list
 		for (BorrowedBook bBook: FileDatabase.getDB().getBorrowedBooks()) {
-			if (bBook.getBookID() == iBookID) {
+			if (bBook.getBookID() == iBookID && bBook.getReturned().equals("No")) {
 				borrowedBook = bBook;
 				break;
 			}
 		}
 		
 		if (borrowedBook == null) {
-			JOptionPane.showMessageDialog(this, "Book has not yet been borrowed!");
+			JOptionPane.showMessageDialog(this, "Book is not in borrowing list");
 			return;
 		}
 		
@@ -158,6 +158,8 @@ public class ReturnBookScreen extends JFrame
 		
 		//remove borrowed book list
 		borrowedBook.setReturnedDate(dReturnedDate);
+		borrowedBook.setReturned("Yes");
+
 		FileDatabase.getDB().save();
 		
 		boolean success = true;
