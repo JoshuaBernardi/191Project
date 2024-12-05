@@ -8,7 +8,7 @@ import gui.LoginScreen;
  * 
  * This program is the GUI that manages the library
  * 
- * Change
+ * Change 2
  */
 public class Main
 {
