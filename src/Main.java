@@ -7,6 +7,8 @@ import gui.LoginScreen;
  * class as the starting point for the application
  * 
  * This program is the GUI that manages the library
+ * 
+ * Change
  */
 public class Main
 {
