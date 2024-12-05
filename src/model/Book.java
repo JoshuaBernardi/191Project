@@ -1,72 +1,82 @@
 /**
+ * Author: Joshua Bernardi, Zalma Farah
  * 
- * @author:
- * Joshua Bernardi
- * Zalma Farah
- * 
- * Purpose: The Book class represents a book in the system
+ * Book represents a book in the system
  */
 package model;
-
-import java.util.Date;
 
 public class Book {
 	
 	/*
 	 * id of the book
 	 */
-	private int bookID;
+	private int bookID; //has a id
 	
 	/**
 	 * subject of the book
 	 */
-	private String subject;
+	private String subject; //has a subject
 	
 	/**
 	 * title of the book
 	 */
-	private String title;
+	private String title; //has a title
 	
 	/**
 	 * author
 	 */
-	private String author;
+	private String author; //has a author
 	
 	/**
 	 * publisher
 	 */
-	private String publisher;
+	private String publisher;//has a publisher
 	
 	/**
 	 * copyright
 	 */
-	private String copyright;
+	private String copyright; //has a copyright
 	
 	/**
 	 * edition
 	 */
-	private int edition;
+	private int edition; //has a edition
 	
 	/**
 	 * pages
 	 */
-	private int numPages;
+	private int numPages; //has a number
 	
 	/**
 	 * ISBN
 	 */
-	private String isbn;
+	private String isbn; //has a ISBN
 	
 	/**
 	 * total number of copies of the book
 	 */
-	private int totalCopies; 
+	private int totalCopies; //has a number of copies
 	
 	/**
 	 * number of boo copies available
 	 */
-	private int availableCopies;
+	private int availableCopies; //has a available of copies
 
+	/**
+	 * constructor
+	 * 
+	 * @param bookID
+	 * @param subject
+	 * @param title
+	 * @param author
+	 * @param publisher
+	 * @param copyright
+	 * @param edition
+	 * @param numPages
+	 * @param isbn
+	 * @param totalCopies
+	 * @param availableCopies
+	 */
 	public Book(int bookID, String subject, String title, String author,
 			String publisher, String copyright, int edition, int numPages,
 			String isbn, int totalCopies, int availableCopies)

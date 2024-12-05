@@ -1,21 +1,62 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This class represents the book is being borrowed
+ */
 package model;
 
 import java.util.Date;
 
 public class BorrowedBook
 {
-
-	private int userID;
-	private int bookID;
+	/**
+	 * member id that borrows the book
+	 */
+	private int userID; //has a member id
 	
-	private String memberName;
-	private String bookTitle;	
+	/**
+	 * book id
+	 */
+	private int bookID; //has a book id
 	
-	private Date borrowedDate;
-	private Date returnedDate;
+	/**
+	 * member name
+	 */
+	private String memberName; //has a member name
 	
+	/**
+	 * book title
+	 */
+	private String bookTitle;	//has a book title
+	
+	/**
+	 * borrowed date
+	 */
+	private Date borrowedDate; //has a borrowed date
+	
+	/**
+	 * return date
+	 */
+	private Date returnedDate; //has a returned date
+	
+	/**
+	 * if the book is returned or not
+	 * 
+	 * has a returned string (Yes or No)
+	 */
 	private String returned; // Yes or No (if the book has been returned)
 	
+	/**
+	 * constructor
+	 * 
+	 * @param userID
+	 * @param bookID
+	 * @param memberName
+	 * @param bookTitle
+	 * @param borrowedDate
+	 * @param returnedDate
+	 * @param returned
+	 */
 	public BorrowedBook(int userID, int bookID, String memberName,
 			String bookTitle, Date borrowedDate, Date returnedDate,
 			String returned)

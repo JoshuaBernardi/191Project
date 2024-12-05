@@ -1,3 +1,8 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * Test the constructor, methods in the the model package
+ */
 package test;
 
 import static org.junit.Assert.assertTrue;
@@ -10,9 +15,6 @@ import org.junit.jupiter.api.Test;
 import model.BorrowedBook;
 import model.Configuration;
 
-/**
- * Test the constructor, methods in the the model package
- */
 public class BasicTest
 {
 	/**

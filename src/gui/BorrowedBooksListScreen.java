@@ -1,3 +1,10 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This screen shows the list of borrowed books
+ * 
+ * It is a JFrame
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -25,12 +32,12 @@ public class BorrowedBooksListScreen extends JFrame
 	/**
 	 * database reference
 	 */
-	private FileDatabase database;
+	private FileDatabase database; //has a database
 	
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen;
+	private MainScreen mainScreen; //has a reference to main screen
 	
 	/**
 	 * constructor

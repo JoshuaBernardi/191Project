@@ -1,3 +1,10 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This screen allows user to return the book
+ * 
+ * It is a  JFrame
+ */
 package gui;
 
 import java.awt.*;
@@ -18,19 +25,48 @@ import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class ReturnBookScreen extends JFrame
 {
-	private JTextField txtBookID;
-	private JTextField txtMemberID;
-	private JCalendar calReturnDate;
-	private JButton btnReturnBook;
-	private JButton btnCancel;
-	private MainScreen mainScreen;
-	private JLabel lblReturnDate;
+	/**
+	 * book id field
+	 */
+	private JTextField txtBookID; //has a book id field
 	
-	/*
+	/**
+	 * member if field
+	 */
+	private JTextField txtMemberID; //has a member id field
+	
+	/**
+	 * return date calendar
+	 */
+	private JCalendar calReturnDate; //has a return date field
+	
+	/**
+	 * button to return book
+	 */
+	private JButton btnReturnBook; //has a return book field
+	
+	/**
+	 * cancel button
+	 */
+	private JButton btnCancel; //has a cancel button
+	
+	/**
+	 * reference to the main screen
+	 */
+	private MainScreen mainScreen; //has a reference to the main screen
+	
+	/**
+	 * return date label
+	 */
+	private JLabel lblReturnDate; //has a return date label
+	
+	/**
+	 * constructor
 	 * 
-	 * 
+	 * @param mainScreen reference to the main screen
 	 */
 	public ReturnBookScreen(MainScreen mainScreen) {
 		
@@ -101,9 +137,8 @@ public class ReturnBookScreen extends JFrame
 
 	}	
 	
-	/*
-	 * 
-	 * 
+	/**
+	 * return book
 	 */
 	public void returnBook()
 	{

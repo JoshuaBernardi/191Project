@@ -1,3 +1,14 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This screen allows user to edit book
+ * The book must be existing.
+ * 
+ * User enters the id, the click search button,
+ * The current book information will be filled
+ * 
+ * It is a JFrame
+ */
 package gui;
 
 import java.awt.GridLayout;
@@ -20,21 +31,44 @@ import model.FileDatabase;
 @SuppressWarnings("serial")
 public class EditBookScreen extends JFrame
 {
-	private JTextField txtBookID;
-	private JComboBox<String> cboSubject;
-	private JTextField txtTitle;
-	private JTextField txtAuthor;
-	private JTextField txtPublisher;
+	/**
+	 * book is field
+	 */
+	private JTextField txtBookID; //has a book id field
 	
-	private Book book = null;
+	/**
+	 * subject combo box
+	 */
+	private JComboBox<String> cboSubject; //has a subject field
+	
+	/**
+	 * title field
+	 */
+	private JTextField txtTitle; //has a title field
+	
+	/**
+	 * author field
+	 */
+	private JTextField txtAuthor; //has a author field
+	
+	/**
+	 * publisher field
+	 */
+	private JTextField txtPublisher; //has a publisher field
+	
+	/**
+	 * current book to edit
+	 */
+	private Book book = null; //has a book to edit
 	
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen;
+	private MainScreen mainScreen; //has a reference to the main screen
 	
 	/**
 	 * constructor
+	 * @param mainScreen reference to the main screen
 	 */
 	public EditBookScreen(MainScreen mainScreen) {
 
@@ -123,6 +157,9 @@ public class EditBookScreen extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	/**
+	 * search book
+	 */
 	private void searchBook() {
 		
 		int iBookID = 0;
@@ -151,8 +188,8 @@ public class EditBookScreen extends JFrame
 		}
 	}
 	
-	//comment
-	/**test github change 1
+	/**
+	 * test github change 1
 	 * edit book
 	 */
 	private void editBook() {

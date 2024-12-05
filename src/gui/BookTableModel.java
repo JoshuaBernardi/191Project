@@ -1,3 +1,12 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This class supports the table component
+ * to manage the list of the items in the table
+ * such as the columns (can add, edit row...)
+ * 
+ * This GUI is a AbstractTableModel
+ */
 package gui;
 
 import java.util.List;
@@ -15,7 +24,7 @@ public class BookTableModel extends AbstractTableModel
 	/**
 	 * column names
 	 * 
-	 * TODO: add more columns
+	 * has-a column names
 	 * 
 	 */
 	private String[] columnNames = {"Book ID", "Subject", "Title", "Publisher"};
@@ -23,7 +32,7 @@ public class BookTableModel extends AbstractTableModel
 	/**
 	 * reference to list of books
 	 */
-	private List<Book> books;
+	private List<Book> books; //has many books
 	
 	/**
 	 * constructor

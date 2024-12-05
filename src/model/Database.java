@@ -5,6 +5,10 @@ import java.util.List;
 import exception.DataInvalidFormatException;
 
 /**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * Database is the super class.
+ * The derived class can be FileDatabase, MySQLDatabase, OracleDatabase,...
  * 
  */
 public abstract class Database
@@ -12,22 +16,22 @@ public abstract class Database
 	/**
 	 * list of books
 	 */
-	protected List<Book> books;
+	protected List<Book> books; //has many books
 	
 	/**
 	 * list of users
 	 */
-	protected List<User> users;
+	protected List<User> users; //has many users
 	
 	/**
 	 * list of borrowed books
 	 */
-	protected List<BorrowedBook> borrowedBooks;
+	protected List<BorrowedBook> borrowedBooks; //has many borrowed books
 	
 	/**
 	 * list of members
 	 */
-	protected List<Member> members;
+	protected List<Member> members; //has many members
 	
 	/**
 	 * @return the users

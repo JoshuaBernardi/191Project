@@ -1,17 +1,51 @@
 package model;
 /**
- * Member is the super class of Student, Professor
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * Member represents a user that can borrow, return book
  */
 public class Member {
-	//use to login
-	private int memberID;
-	private String password;
 	
-	private String name;
-	private String phoneNumber;
-	private String address;
-	private String email;
+	/**
+	 * id
+	 */
+	private int memberID; //has a id
 	
+	/**
+	 * password
+	 */
+	private String password;//has a password
+	
+	/**
+	 * name
+	 */
+	private String name; //has a name
+	
+	/**
+	 * phone number
+	 */
+	private String phoneNumber; //has a phone number
+	
+	/**
+	 * address
+	 */
+	private String address; //has a address
+	
+	/**
+	 * email
+	 */
+	private String email; //has a email
+	
+	/**
+	 * constructor
+	 * 
+	 * @param memberID
+	 * @param password
+	 * @param name
+	 * @param phoneNumber
+	 * @param address
+	 * @param email
+	 */
 	public Member(int memberID, String password, String name,
 			String phoneNumber, String address, String email)
 	{

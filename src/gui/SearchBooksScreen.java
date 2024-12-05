@@ -1,3 +1,11 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This screen allows user to search book by
+ * title, author, publisher base the key (substring)
+ * 
+ * This is a JFrame
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -28,20 +36,21 @@ public class SearchBooksScreen extends JFrame
 	/**
 	 * database reference
 	 */
-	private FileDatabase database;
+	private FileDatabase database; //has a reference to the database
 	
 	/**
 	 * key to search like the substring in author, title, publisher...
 	 */
-	private JTextField txtKey; 
+	private JTextField txtKey; //has a key field to search
 	
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen;
+	private MainScreen mainScreen; //has a reference to the main screen
 	
 	/**
 	 * constructor
+	 * @param mainScreen reference to the main screen
 	 */
 	public SearchBooksScreen(MainScreen mainScreen) {
 		

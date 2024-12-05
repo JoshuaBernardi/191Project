@@ -1,3 +1,10 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This is screen for login
+ * 
+ * This is a JFrame
+ */
 package gui;
 
 import java.awt.GridLayout;
@@ -22,10 +29,19 @@ import model.User;
 @SuppressWarnings("serial")
 public class LoginScreen extends JFrame
 {
+	/**
+	 * user id field
+	 */
+	private JTextField txtUserID; //has a user id field
 	
-	private JTextField txtUserID;
-	private JPasswordField txtPassword;
+	/**
+	 * password field
+	 */
+	private JPasswordField txtPassword; //has a password field
 	
+	/**
+	 * constructor
+	 */
 	public LoginScreen() {
 		
 		txtUserID = new JTextField(10);;
@@ -72,6 +88,11 @@ public class LoginScreen extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	/**
+	 * login
+	 * 
+	 * @throws LoginException
+	 */
 	private void login() throws LoginException {
 		
 		boolean success = false;

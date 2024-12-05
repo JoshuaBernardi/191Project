@@ -1,3 +1,12 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This screen allows user to borrow book.
+ * The book must be not yet borrowed
+ * or borrowed but has been returned.
+ * 
+ * Moreover, the returned data must after/same the borrowed date
+ */
 package gui;
 
 import java.awt.GridLayout;
@@ -22,18 +31,34 @@ import model.Member;
 @SuppressWarnings("serial")
 public class BorrowBookScreen extends JFrame
 {
-	private JTextField txtBookID;
-	private JTextField txtMemberID;
-	private JTextField txtBorrowDate;
-	private JTextField txtReturnDate;
+	/**
+	 * book id field
+	 */
+	private JTextField txtBookID; //has a book id field
+	
+	/**
+	 * member id field
+	 */
+	private JTextField txtMemberID; //has a member id field
+	
+	/**
+	 * borrow date field
+	 */
+	private JTextField txtBorrowDate; //has a borrow date field
+	
+	/**
+	 * return date field
+	 */
+	private JTextField txtReturnDate; //has a return date field
 	
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen;
+	private MainScreen mainScreen; //has a reference to the main screen
 	
 	/**
 	 * constructor
+	 * @param mainScreen reference to the main screen
 	 */
 	public BorrowBookScreen(MainScreen mainScreen) {
 

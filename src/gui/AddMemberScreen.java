@@ -1,3 +1,9 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * Screen to adding member
+ * This class is-a JFrame
+ */
 package gui;
 
 import java.awt.GridLayout;
@@ -21,19 +27,45 @@ import model.Member;
 @SuppressWarnings("serial")
 public class AddMemberScreen extends JFrame
 {
-	private JTextField txtMemberID;
-	private JPasswordField txtPassword;
-	private JPasswordField txtConfirmPassword;
+	/**
+	 * member id field
+	 */
+	private JTextField txtMemberID; //has a id field
 	
-	private JTextField txtName;
-	private JTextField txtPhoneNumber;
-	private JTextField txtAddress;
-	private JTextField txtEmail;
+	/**
+	 * password field
+	 */
+	private JPasswordField txtPassword; //has a password field
+	
+	/**
+	 * field to confirm the password
+	 */
+	private JPasswordField txtConfirmPassword; //has a confirm password field
+	
+	/**
+	 * name field
+	 */
+	private JTextField txtName; //has a name field
+	
+	/**
+	 * phone number field
+	 */
+	private JTextField txtPhoneNumber; //has phone number field
+	
+	/**
+	 * address field
+	 */
+	private JTextField txtAddress; //has a address field
+	
+	/**
+	 * email field
+	 */
+	private JTextField txtEmail; //has a email field
 	
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen;
+	private MainScreen mainScreen; //has a reference to the main screen
 	
 	/**
 	 * constructor
@@ -115,8 +147,12 @@ public class AddMemberScreen extends JFrame
 		setLocationRelativeTo(null); //center the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	//comment
-	/**test github change 1
+	
+	/**
+	 * add member to the system
+	 * The member id is unique
+	 * 
+	 * test github change 1
 	 * add book
 	 */
 	private void addMember() {

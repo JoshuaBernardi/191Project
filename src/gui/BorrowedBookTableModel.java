@@ -1,3 +1,12 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This class supports the table component
+ * to manage the list of the items in the table
+ * such as the columns (can add, edit row...)
+ * 
+ * This GUI is a AbstractTableModel
+ */
 package gui;
 
 import java.util.Date;
@@ -18,7 +27,7 @@ public class BorrowedBookTableModel extends AbstractTableModel
 	/**
 	 * column names
 	 * 
-	 * TODO: add more columns
+	 * has a column names
 	 * 
 	 */
 	private String[] columnNames = {"Member Name", "Book Title", "Borrowed Date", "Return Date", "Over Due"};
@@ -26,11 +35,11 @@ public class BorrowedBookTableModel extends AbstractTableModel
 	/**
 	 * reference to list of books
 	 */
-	private List<BorrowedBook> borrowedBooks;
+	private List<BorrowedBook> borrowedBooks; //has many borrowed books
 	
 	/**
 	 * constructor
-	 * @param books
+	 * @param books list of borrowed books
 	 */
 	public BorrowedBookTableModel(List<BorrowedBook> borrowedBooks)
 	{

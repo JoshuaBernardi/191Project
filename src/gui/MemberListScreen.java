@@ -1,3 +1,10 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This screen list all members
+ * 
+ * It is JFrame 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -24,15 +31,16 @@ public class MemberListScreen extends JFrame
 	/**
 	 * database reference
 	 */
-	private FileDatabase database;
+	private FileDatabase database; //has a database
 	
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen;
+	private MainScreen mainScreen; //has a reference to the main screen
 	
 	/**
 	 * constructor
+	 * @param mainScreen main screen
 	 */
 	public MemberListScreen(MainScreen mainScreen) {
 		

@@ -1,3 +1,9 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This GUI show the available books
+ * It is a JFrame object
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -25,15 +31,17 @@ public class AvailableBooksListScreen extends JFrame
 	/**
 	 * database reference
 	 */
-	private FileDatabase database;
+	private FileDatabase database; //has a reference to the database 
 	
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen;
+	private MainScreen mainScreen;//has a reference to the main screen
 	
 	/**
 	 * constructor
+	 * 
+	 * @param mainScreen reference to the main screen
 	 */
 	public AvailableBooksListScreen(MainScreen mainScreen) {
 		

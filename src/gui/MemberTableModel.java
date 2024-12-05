@@ -1,3 +1,12 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This class supports the table component
+ * to manage the list of the items in the table
+ * such as the columns (can add, edit row...)
+ * 
+ * This GUI is a AbstractTableModel
+ */
 package gui;
 
 
@@ -17,7 +26,7 @@ public class MemberTableModel extends AbstractTableModel
 	/**
 	 * column names
 	 * 
-	 * TODO: add more columns
+	 * has a column names
 	 * 
 	 */
 	private String[] columnNames = {"Member ID", "Name", "Phone", "Address", "Email"};
@@ -25,7 +34,7 @@ public class MemberTableModel extends AbstractTableModel
 	/**
 	 * reference to list of members
 	 */
-	private List<Member> members;
+	private List<Member> members; //has many members
 	
 	/**
 	 * constructor

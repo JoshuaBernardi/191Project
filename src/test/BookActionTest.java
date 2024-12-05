@@ -1,3 +1,8 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * Test the action on the book like overdue
+ */
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,9 +13,6 @@ import org.junit.jupiter.api.Test;
 import model.BorrowedBook;
 import model.Configuration;
 
-/**
- * Test the action on the book like overdue
- */
 class BookActionTest
 {
 

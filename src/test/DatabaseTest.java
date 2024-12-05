@@ -1,7 +1,7 @@
 /**
  * Author: Joshua Bernardi, Zalma Farah
  * 
- * 
+ * Test the database like load, save, get
  */
 package test;
 
@@ -14,11 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Calendar;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import exception.DataInvalidFormatException;
 import model.Book;
 import model.BorrowedBook;
@@ -27,10 +24,11 @@ import model.FileDatabase;
 import model.Member;
 
 /**
- * Test the database like load, save, get, set
+ * 
  */
 public class DatabaseTest
 {
+	//This method is run before every method with @Test annotation
 	@BeforeEach
 	void initialize() {
 		Configuration.BOOKS_FILENAME = "test_books.txt";

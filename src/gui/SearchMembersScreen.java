@@ -1,3 +1,10 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This screen searches all members in the system
+ * 
+ * It is a JFrame
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -20,29 +27,27 @@ import model.Database;
 import model.FileDatabase;
 import model.Member;
 
-/**
- * This screen searches all members in the system
- */
 @SuppressWarnings("serial")
 public class SearchMembersScreen extends JFrame
 {
 	/**
 	 * database reference
 	 */
-	private FileDatabase database;
+	private FileDatabase database; //has a reference to database
 	
 	/**
 	 * key to search like the substring in name, address, phone, email ...
 	 */
-	private JTextField txtKey; 
+	private JTextField txtKey; //has a key field
 	
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen;
+	private MainScreen mainScreen; //has a reference to the main screen
 	
 	/**
 	 * constructor
+	 * @param mainScreen reference to the main screen
 	 */
 	public SearchMembersScreen(MainScreen mainScreen) {
 		

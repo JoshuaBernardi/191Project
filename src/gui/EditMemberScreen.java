@@ -1,3 +1,13 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * This screen allows user to edit the member
+ * The member must be existing
+ * The member id is inputed, then the screen will fill
+ * the current member information
+ * 
+ * It is a JFrame
+ */
 package gui;
 
 import java.awt.GridLayout;
@@ -21,16 +31,45 @@ import model.Member;
 @SuppressWarnings("serial")
 public class EditMemberScreen extends JFrame
 {
-	private JTextField txtMemberID;
-	private JPasswordField txtPassword;
-	private JPasswordField txtConfirmPassword;
+	/**
+	 * member id field
+	 */
+	private JTextField txtMemberID; //has a member id field
 	
-	private JTextField txtName;
-	private JTextField txtPhoneNumber;
-	private JTextField txtAddress;
-	private JTextField txtEmail;
+	/**
+	 * password field
+	 */
+	private JPasswordField txtPassword; //has a password field
 	
-	private Member member;
+	/**
+	 * confirm password field
+	 */
+	private JPasswordField txtConfirmPassword; //has a confirm password field
+	
+	/**
+	 * name field
+	 */
+	private JTextField txtName; //has a name field
+	
+	/**
+	 * phone number field
+	 */
+	private JTextField txtPhoneNumber; //has a phone number field
+	
+	/**
+	 * address field
+	 */
+	private JTextField txtAddress; //has a address field
+	
+	/**
+	 * email field
+	 */
+	private JTextField txtEmail; //has a email address field
+	
+	/**
+	 * member to edit
+	 */
+	private Member member; //has a member to edit
 	
 	/**
 	 * reference to main screen
@@ -39,6 +78,7 @@ public class EditMemberScreen extends JFrame
 	
 	/**
 	 * constructor
+	 * @param mainScreen reference to main screen
 	 */
 	public EditMemberScreen(MainScreen mainScreen) {
 

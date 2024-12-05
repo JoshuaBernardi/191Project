@@ -1,3 +1,11 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * MainScreen contains the menu, handle the action
+ * like lists the books, borrow book,...
+ * 
+ * It is a JFrame
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -18,10 +26,17 @@ import com.toedter.calendar.JCalendar;
 
 import model.Configuration;
 
+@SuppressWarnings("serial")
 public class MainScreen extends JFrame
 {
-	private JLabel lblSystemDate = new JLabel();
+	/**
+	 * system date
+	 */
+	private JLabel lblSystemDate = new JLabel(); //has a system date label
 	
+	/**
+	 * constructor
+	 */
 	public MainScreen() {
 		
 		createMenu();
@@ -33,7 +48,9 @@ public class MainScreen extends JFrame
 		
 	}
 	
-	
+	/**
+	 * create menu
+	 */
 	private void createMenu() {
 		
 		JMenuBar mnuBar = new JMenuBar();
@@ -283,6 +300,9 @@ public class MainScreen extends JFrame
 		});
 	}
 	
+	/**
+	 * set system date
+	 */
 	private void setDate() {
 		
 		JFrame frame = new JFrame("Set up system date");
