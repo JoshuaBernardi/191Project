@@ -8,7 +8,6 @@ import javax.swing.table.AbstractTableModel;
 import model.Book;
 import model.BorrowedBook;
 import model.Configuration;
-import model.FileDatabase;
 
 /**
  * this model is used to control the data part of the Jtable
@@ -83,10 +82,10 @@ public class BorrowedBookTableModel extends AbstractTableModel
 				val = borrowedBooks.get(row).getBookTitle();
 				break;
 			case 2:
-				val = FileDatabase.sdf.format(borrowedBooks.get(row).getBorrowedDate());
+				val = Configuration.sdf.format(borrowedBooks.get(row).getBorrowedDate());
 				break;
 			case 3:
-				val = FileDatabase.sdf.format(borrowedBooks.get(row).getReturnedDate());
+				val = Configuration.sdf.format(borrowedBooks.get(row).getReturnedDate());
 				break;
 			case 4:
 				if (borrowedBooks.get(row).isOverDue()) {

@@ -1,3 +1,8 @@
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * 
+ * 
+ */
 package test;
 
 import static org.junit.Assert.fail;
@@ -145,10 +150,10 @@ public class DatabaseTest
 		assertEquals(1, borrowedBook.getBookID());
 		assertEquals("Join", borrowedBook.getMemberName());
 		assertEquals("Sun", borrowedBook.getBookTitle());
-		assertEquals(FileDatabase.sdf.format(today.getTime()), 
-				FileDatabase.sdf.format(borrowedBook.getBorrowedDate()));
-		assertEquals(FileDatabase.sdf.format(tomorrow.getTime()), 
-				FileDatabase.sdf.format(borrowedBook.getReturnedDate()));
+		assertEquals(Configuration.sdf.format(today.getTime()), 
+				Configuration.sdf.format(borrowedBook.getBorrowedDate()));
+		assertEquals(Configuration.sdf.format(tomorrow.getTime()), 
+				Configuration.sdf.format(borrowedBook.getReturnedDate()));
 		assertEquals("No", borrowedBook.getReturned());
 		
 		Path path = Paths.get(Configuration.BORROWED_BOOKS_FILENAME);

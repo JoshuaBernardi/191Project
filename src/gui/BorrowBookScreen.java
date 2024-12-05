@@ -46,13 +46,13 @@ public class BorrowBookScreen extends JFrame
 		txtBorrowDate = new JTextField();
 		txtReturnDate = new JTextField();
 		
-		txtBorrowDate.setText(FileDatabase.sdf.format(Configuration.currentDate));
+		txtBorrowDate.setText(Configuration.sdf.format(Configuration.currentDate));
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(Configuration.currentDate);
 		cal.add(Calendar.DATE, 7);
 		
-		txtReturnDate.setText(FileDatabase.sdf.format(cal.getTime()));
+		txtReturnDate.setText(Configuration.sdf.format(cal.getTime()));
 		
 		//buttons
 		JButton btnBorrowBook = new JButton("Borrow Book");
@@ -141,7 +141,7 @@ public class BorrowBookScreen extends JFrame
 		
 		Date dBorrowedDate = null;
 		try {
-			dBorrowedDate = FileDatabase.sdf.parse(borrowedDate);
+			dBorrowedDate = Configuration.sdf.parse(borrowedDate);
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(this, "Borrowed Date must be in MM/DD/YYYY format");
 			return;
@@ -149,7 +149,7 @@ public class BorrowBookScreen extends JFrame
 		
 		Date dReturnedDate = null;
 		try {
-			dReturnedDate = FileDatabase.sdf.parse(returnDate);
+			dReturnedDate = Configuration.sdf.parse(returnDate);
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(this, "Return Date must be in MM/DD/YYYY format");
 			return;

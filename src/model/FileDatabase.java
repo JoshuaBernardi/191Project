@@ -5,12 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import exception.DataInvalidFormatException;
 
+/**
+ * Author: Joshua Bernardi, Zalma Farah
+ * The FileDatabase manages the data for the program.
+ * It stores data in text file
+ * 
+ * FileDatabase is-a Database
+ */
 public class FileDatabase extends Database
 {
 	
@@ -20,9 +26,7 @@ public class FileDatabase extends Database
 	 * singleton design pattern
 	 * that allows to use ONE instance of FileDatabase in the whole system
 	 */
-	private static  FileDatabase db;
-	
-	public static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	private static  FileDatabase db;  //has a static object
 
 	@Override
 	public void initialize() throws DataInvalidFormatException
@@ -78,7 +82,7 @@ public class FileDatabase extends Database
 				{
 					BorrowedBook bb = new BorrowedBook(Integer.parseInt(data[0]), 
 							Integer.parseInt(data[1]), data[2], data[3],
-							sdf.parse(data[4]), sdf.parse(data[5]), data[6]);
+							Configuration.sdf.parse(data[4]), Configuration.sdf.parse(data[5]), data[6]);
 					
 					borrowedBooks.add(bb);
 				}
@@ -210,9 +214,9 @@ public class FileDatabase extends Database
 				writer.write(";");
 				writer.write(borrowedBook.getBookTitle());
 				writer.write(";");
-				writer.write(sdf.format(borrowedBook.getBorrowedDate()));
+				writer.write(Configuration.sdf.format(borrowedBook.getBorrowedDate()));
 				writer.write(";");
-				writer.write(sdf.format(borrowedBook.getReturnedDate()));
+				writer.write(Configuration.sdf.format(borrowedBook.getReturnedDate()));
 				writer.write(";");
 				writer.write(borrowedBook.getReturned());
 				

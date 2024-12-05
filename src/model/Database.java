@@ -4,6 +4,9 @@ import java.util.List;
 
 import exception.DataInvalidFormatException;
 
+/**
+ * 
+ */
 public abstract class Database
 {
 	/**

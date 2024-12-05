@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,4 +16,10 @@ public class Configuration
 	static {
 		currentDate = Calendar.getInstance().getTime();
 	}
+
+	/**
+	 * Simple formatter to parse format date in MM/DD/YYYY
+	 * where M is month, D is day and Y is year
+	 */
+	public static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 }

@@ -48,7 +48,7 @@ public class ReturnBookScreen extends JFrame
 			@Override
 			public void propertyChange(PropertyChangeEvent evt)
 			{
-				lblReturnDate.setText(FileDatabase.sdf.format(calReturnDate.getDate()));
+				lblReturnDate.setText(Configuration.sdf.format(calReturnDate.getDate()));
 			}
 		});
 		

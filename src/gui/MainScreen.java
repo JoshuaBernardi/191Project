@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import com.toedter.calendar.JCalendar;
 
 import model.Configuration;
-import model.FileDatabase;
 
 public class MainScreen extends JFrame
 {
@@ -117,7 +116,7 @@ public class MainScreen extends JFrame
 		mnuBar.add(lblSystemDate);
 		
 		lblSystemDate.setText("Current Date: " + 
-				FileDatabase.sdf.format(Configuration.currentDate));
+				Configuration.sdf.format(Configuration.currentDate));
 		
 		setJMenuBar(mnuBar);
 		
@@ -307,7 +306,7 @@ public class MainScreen extends JFrame
 			{
 				Configuration.currentDate = calendar.getDate();
 				lblSystemDate.setText("Current Date: " + 
-						FileDatabase.sdf.format(Configuration.currentDate));
+						Configuration.sdf.format(Configuration.currentDate));
 				dialog.dispose();
 			}
 		});
