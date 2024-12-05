@@ -15,11 +15,14 @@ public class BorrowedBook
 	private Date returnedDate;
 	
 	private String returned; // Yes or No (if the book has been returned)
+	
 	public BorrowedBook(int userID, int bookID, String memberName,
 			String bookTitle, Date borrowedDate, Date returnedDate,
 			String returned)
 	{
-		super();
+		if (returnedDate.before(borrowedDate)) {
+			throw new IllegalArgumentException("Error: The returned date must be after or equal the borrowed date");
+		}
 		this.userID = userID;
 		this.bookID = bookID;
 		this.memberName = memberName;
@@ -127,6 +130,12 @@ public class BorrowedBook
 		this.returned = returned;
 	}
 	
-	
+	/**
+	 * check if the borrow is over due
+	 * @return true/false
+	 */
+	public boolean isOverDue() {
+		return returnedDate.before(Configuration.currentDate);
+	}
 	
 }

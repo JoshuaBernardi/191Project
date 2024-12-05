@@ -17,14 +17,6 @@ public abstract class Database
 	protected List<User> users;
 	
 	/**
-	 * @return the users
-	 */
-	public List<User> getUsers()
-	{
-		return users;
-	}
-
-	/**
 	 * list of borrowed books
 	 */
 	protected List<BorrowedBook> borrowedBooks;
@@ -33,6 +25,14 @@ public abstract class Database
 	 * list of members
 	 */
 	protected List<Member> members;
+	
+	/**
+	 * @return the users
+	 */
+	public List<User> getUsers()
+	{
+		return users;
+	}
 	
 	/**
 	 * @return the members
@@ -81,5 +81,33 @@ public abstract class Database
 		return books;
 	}
 	
+	/**
+	 * get book by id
+	 * @param id book id
+	 * @return Book or null if not found
+	 */
+	public Book getBookByID(int id) {
+		
+		for (Book book: books) {
+			if (book.getBookID() == id) {
+				return book;
+			}
+		}
+		return null;
+	}
 	
+	/**
+	 * get member by id
+	 * @param id member id
+	 * @return Member or null if not found
+	 */
+	public Member getMemberByID(int id) {
+		
+		for (Member member: members) {
+			if (member.getMemberID() == id) {
+				return member;
+			}
+		}
+		return null;
+	}
 }

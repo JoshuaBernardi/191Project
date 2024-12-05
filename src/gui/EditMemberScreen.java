@@ -144,12 +144,7 @@ public class EditMemberScreen extends JFrame
 		}
 		
 		
-		for (Member mem: FileDatabase.getDB().getMembers()) {
-			if (mem.getMemberID() == iMemberId) {
-				member = mem;
-				break;
-			}
-		}
+		member = FileDatabase.getDB().getMemberByID(iMemberId);
 		
 		if (member == null) {
 			JOptionPane.showMessageDialog(this, "Member with ID not found!");

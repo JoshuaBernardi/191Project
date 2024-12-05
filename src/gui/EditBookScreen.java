@@ -133,13 +133,7 @@ public class EditBookScreen extends JFrame
 			return;
 		}
 		
-		
-		for (Book b: FileDatabase.getDB().getBooks()) {
-			if (b.getBookID() == iBookID) {
-				book = b;
-				break;
-			}
-		}
+		book = FileDatabase.getDB().getBookByID(iBookID);
 		
 		if (book == null) {
 			JOptionPane.showMessageDialog(this, "Book with ID not found!");

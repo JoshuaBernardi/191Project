@@ -89,7 +89,7 @@ public class BorrowedBookTableModel extends AbstractTableModel
 				val = FileDatabase.sdf.format(borrowedBooks.get(row).getReturnedDate());
 				break;
 			case 4:
-				if (borrowedBooks.get(row).getReturnedDate().before(Configuration.currentDate)) {
+				if (borrowedBooks.get(row).isOverDue()) {
 					val = "Yes";
 				}else {
 					val = "No";

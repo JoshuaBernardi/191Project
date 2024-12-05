@@ -34,7 +34,7 @@ public class FileDatabase extends Database
 		//will load from books.txt
 		try
 		{
-			Scanner scanner = new Scanner(new File("books.txt"));
+			Scanner scanner = new Scanner(new File(Configuration.BOOKS_FILENAME));
 			
 			while (scanner.hasNext()) {
 				
@@ -56,7 +56,7 @@ public class FileDatabase extends Database
 		}
 		catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		
@@ -66,7 +66,7 @@ public class FileDatabase extends Database
 		//will load from borrowed books.txt
 		try
 		{
-			Scanner scanner = new Scanner(new File("borrowed_books.txt"));
+			Scanner scanner = new Scanner(new File(Configuration.BORROWED_BOOKS_FILENAME));
 			
 			while (scanner.hasNext()) {
 				
@@ -92,7 +92,7 @@ public class FileDatabase extends Database
 		}
 		catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		subjects = new String[]{"Math", "Science", "History", "Art", "Cooking", "Language", "Cars"};
@@ -102,7 +102,7 @@ public class FileDatabase extends Database
 		//will load from members.txt
 		try
 		{
-			Scanner scanner = new Scanner(new File("members.txt"));
+			Scanner scanner = new Scanner(new File(Configuration.MEMBERS_FILENAME));
 			
 			while (scanner.hasNext()) {
 				
@@ -126,7 +126,7 @@ public class FileDatabase extends Database
 		}
 		catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		users = new ArrayList<User>();
@@ -134,7 +134,7 @@ public class FileDatabase extends Database
 		//will load from members.txt
 		try
 		{
-			Scanner scanner = new Scanner(new File("users.txt"));
+			Scanner scanner = new Scanner(new File(Configuration.USERS_FILENAME));
 			
 			while (scanner.hasNext()) {
 				
@@ -157,7 +157,7 @@ public class FileDatabase extends Database
 		}
 		catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 	}
@@ -168,7 +168,7 @@ public class FileDatabase extends Database
 		// save files
 		try
 		{
-			FileWriter writer = new FileWriter("books.txt");
+			FileWriter writer = new FileWriter(Configuration.BOOKS_FILENAME);
 			
 			for (Book book: books) {
 				writer.write(String.valueOf(book.getBookID()));
@@ -199,7 +199,7 @@ public class FileDatabase extends Database
 			writer.close();
 			
 			
-			writer = new FileWriter("borrowed_books.txt");
+			writer = new FileWriter(Configuration.BORROWED_BOOKS_FILENAME);
 			
 			for (BorrowedBook borrowedBook: borrowedBooks) {
 				writer.write(String.valueOf(borrowedBook.getUserID()));
@@ -221,7 +221,7 @@ public class FileDatabase extends Database
 			}
 			writer.close();
 			
-			writer = new FileWriter("members.txt");
+			writer = new FileWriter(Configuration.MEMBERS_FILENAME);
 			
 			for (Member member: members) {
 				writer.write(String.valueOf(member.getMemberID()));

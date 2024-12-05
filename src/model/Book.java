@@ -260,34 +260,5 @@ public class Book {
 	{
 		this.availableCopies = availableCopies;
 	}
-	
-	
-	public boolean checkOut(Date dueDate) {
-		
-		if(availableCopies > 0) {
-			availableCopies--;
-			return true;
-		}
-		
-		return false; //returns false when no copies are available
-	}
-	
-	/*
-	public boolean returnBook() {
-		
-		if(dueDate != null) { //checks if the book has a due date
-			availableCopies++;
-			dueDate = null;
-			return true; //returns true if the checkout was successful
-		}
-		
-		return false;
-	}
-	
-	public boolean isOverDue(Date currentDate) {
-		
-		return dueDate != null && currentDate.after(dueDate); //checks if the due date is set and if the current date is after the due date 
-	}
-	*/
 }
 

@@ -5,20 +5,65 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Calendar;
 
 import org.junit.jupiter.api.Test;
+import model.BorrowedBook;
+import model.Configuration;
 
-import model.Book;
-
+/**
+ * Test the action on the book like overdue
+ */
 class BookActionTest
 {
 
+	/**
+	 * Test if the borrowed book is overdue
+	 */
 	@Test
-	void testBorrow()
+	void testOverDue()
 	{
-		Book book = new Book(1, null, null, null, null, null, 0, 0, null, 10, 10);
-		book.checkOut(Calendar.getInstance().getTime());
+		Calendar today = Calendar.getInstance();
+		Configuration.currentDate = today.getTime();
 		
-		assertEquals(9, book.getAvailableCopies());
+		Calendar yesterday = Calendar.getInstance();
+		yesterday.add(Calendar.DATE, -1);
+		
+		BorrowedBook borrowedBook = new BorrowedBook(100, 1, "Join", "Sun", yesterday.getTime(), 
+				yesterday.getTime(), "No");
+		
+		assertTrue(borrowedBook.isOverDue());
 	}
 
-	//TODO: add more test, return, reserve, edit, add book...
+	
+	/**
+	 * Test if the borrowed book is not overdue
+	 */
+	@Test
+	void testNotYetOverDue()
+	{
+		Calendar today = Calendar.getInstance();
+		Configuration.currentDate = today.getTime();
+		
+		Calendar tomorrow = Calendar.getInstance();
+		tomorrow.add(Calendar.DATE, 1);
+		
+		BorrowedBook borrowedBook = new BorrowedBook(100, 1, "Join", "Sun", today.getTime(), 
+				tomorrow.getTime(), "No");
+		
+		assertFalse(borrowedBook.isOverDue());
+	}
+
+	
+	/**
+	 * Test if the returned date is equals the system date, borrowed book is not overdue
+	 */
+	@Test
+	void testSameDateOverDue()
+	{
+		Calendar today = Calendar.getInstance();
+		Configuration.currentDate = today.getTime();
+		
+		BorrowedBook borrowedBook = new BorrowedBook(100, 1, "Join", "Sun", today.getTime(), 
+				today.getTime(), "No");
+		
+		assertFalse(borrowedBook.isOverDue());
+	}
 }

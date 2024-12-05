@@ -194,10 +194,19 @@ public class BorrowBookScreen extends JFrame
 			return;
 		}
 		
+		BorrowedBook borrowedBook = null;
 		
-		FileDatabase.getDB().getBorrowedBooks().add(new BorrowedBook(iMemberID, iBookID, 
+		
+		try {
+			borrowedBook = new BorrowedBook(iMemberID, iBookID, 
 				member.getName(), book.getTitle(),
-				dBorrowedDate, dReturnedDate, "No"));
+				dBorrowedDate, dReturnedDate, "No");
+		}catch(IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
+			return;
+		}
+		
+		FileDatabase.getDB().getBorrowedBooks().add(borrowedBook);
 		FileDatabase.getDB().save();
 		
 		//
