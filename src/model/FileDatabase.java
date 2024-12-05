@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import exception.DataException;
+import exception.DataInvalidFormatException;
 
 public class FileDatabase extends Database
 {
@@ -25,7 +25,7 @@ public class FileDatabase extends Database
 	public static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
 	@Override
-	public void initialize() throws DataException
+	public void initialize() throws DataInvalidFormatException
 	{
 		// read files
 		books = new ArrayList<Book>();
@@ -84,7 +84,7 @@ public class FileDatabase extends Database
 				}
 				catch (Exception e)
 				{
-					throw new DataException();
+					throw new DataInvalidFormatException();
 				}
 			}
 			
@@ -118,7 +118,7 @@ public class FileDatabase extends Database
 				}
 				catch (Exception e)
 				{
-					throw new DataException();
+					throw new DataInvalidFormatException();
 				}
 			}
 			
@@ -149,7 +149,7 @@ public class FileDatabase extends Database
 				}
 				catch (Exception e)
 				{
-					throw new DataException();
+					throw new DataInvalidFormatException();
 				}
 			}
 			
@@ -259,7 +259,7 @@ public class FileDatabase extends Database
 			{
 				db.initialize();
 			}
-			catch (DataException e)
+			catch (DataInvalidFormatException e)
 			{
 				e.printStackTrace();
 			}

@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-import exception.DataException;
+import exception.DataInvalidFormatException;
 
 public abstract class Database
 {
@@ -66,7 +66,7 @@ public abstract class Database
 	/**
 	 * initialize
 	 */
-	public abstract void initialize() throws DataException;
+	public abstract void initialize() throws DataInvalidFormatException;
 	
 	/**
 	 * save database
