@@ -25,6 +25,8 @@ import model.FileDatabase;
 import model.Member;
 
 @SuppressWarnings("serial")
+
+//Is-a relationship: AddMemberScreen is a JFrame (inherits from JFrame)
 public class AddMemberScreen extends JFrame
 {
 	/**

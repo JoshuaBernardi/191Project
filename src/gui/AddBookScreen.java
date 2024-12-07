@@ -26,7 +26,9 @@ import model.Book;
 import model.FileDatabase;
 
 @SuppressWarnings("serial")
-public class AddBookScreen extends JFrame
+
+//Is-a relationship: AddBookScreen is a JFrame (inherits from JFrame)
+public class AddBookScreen extends JFrame 
 {
 	/**
 	 * subject combo box
