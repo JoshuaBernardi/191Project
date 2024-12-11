@@ -3,7 +3,7 @@
  * 
  * This screen list all members
  * 
- * It is JFrame 
+ * It is JFrame
  */
 package gui;
 
@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import exception.DatabaseException;
 import model.Book;
 import model.Database;
 import model.FileDatabase;
@@ -31,50 +33,54 @@ public class MemberListScreen extends JFrame
 	/**
 	 * database reference
 	 */
-	private FileDatabase database; //has a database
-	
+	private FileDatabase database; // has a database
+
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen; //has a reference to the main screen
-	
+	private MainScreen mainScreen; // has a reference to the main screen
+
 	/**
 	 * constructor
+	 * 
 	 * @param mainScreen main screen
+	 * @throws DatabaseException
 	 */
-	public MemberListScreen(MainScreen mainScreen) {
-		
+	public MemberListScreen(MainScreen mainScreen) throws DatabaseException
+	{
+
 		this.mainScreen = mainScreen;
-		
+
 		setTitle("Library System - List all members");
 		setSize(1000, 800);
-		setLocationRelativeTo(null); //center the screen
+		setLocationRelativeTo(null); // center the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		database = FileDatabase.getDB();
-		
-		//show members
+
+		// show members
 		showMembers();
-		
-		//show control
+
+		// show control
 		showControl();
 	}
-	
+
 	/**
 	 * show control panel
 	 */
-	private void showControl() {
-		
+	private void showControl()
+	{
+
 		JButton btnBack = new JButton("Back");
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.add(btnBack);
-		
+
 		add(bottomPanel, BorderLayout.SOUTH);
-		
-		//set action for button
+
+		// set action for button
 		btnBack.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -83,24 +89,26 @@ public class MemberListScreen extends JFrame
 			}
 		});
 	}
-	
+
 	/**
 	 * show books on the screen
 	 */
-	public void showMembers() {
-		
+	public void showMembers()
+	{
+
 		setLayout(new BorderLayout());
-		
+
 		List<Member> members = database.getMembers();
-		
+
 		MemberTableModel model = new MemberTableModel(members);
 		JTable memberTable = new JTable(model);
-		
-		//create panel to contain the table
+
+		// create panel to contain the table
 		JScrollPane centerPanel = new JScrollPane();
-		centerPanel.setViewportView(memberTable);;
-		
-		//put as the center
+		centerPanel.setViewportView(memberTable);
+		;
+
+		// put as the center
 		add(centerPanel, BorderLayout.CENTER);
 	}
 

@@ -10,13 +10,13 @@ public class User
 	/**
 	 * id
 	 */
-	private String userID; //has id
-	
+	private String userID; // has id
+
 	/**
 	 * password
 	 */
-	private String password; //has password
-	
+	private String password; // has password
+
 	/**
 	 * constructor
 	 * 
@@ -60,7 +60,5 @@ public class User
 	{
 		this.password = password;
 	}
-	
-	
 
 }

@@ -9,7 +9,6 @@
  */
 package gui;
 
-
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
@@ -29,15 +28,17 @@ public class MemberTableModel extends AbstractTableModel
 	 * has a column names
 	 * 
 	 */
-	private String[] columnNames = {"Member ID", "Name", "Phone", "Address", "Email"};
-	
+	private String[] columnNames = { "Member ID", "Name", "Phone", "Address",
+			"Email" };
+
 	/**
 	 * reference to list of members
 	 */
-	private List<Member> members; //has many members
-	
+	private List<Member> members; // has many members
+
 	/**
 	 * constructor
+	 * 
 	 * @param members
 	 */
 	public MemberTableModel(List<Member> members)
@@ -53,7 +54,7 @@ public class MemberTableModel extends AbstractTableModel
 	{
 		return columnNames.length;
 	}
-	
+
 	@Override
 	/**
 	 * get the name of the column [column]
@@ -79,7 +80,7 @@ public class MemberTableModel extends AbstractTableModel
 	public Object getValueAt(int row, int col)
 	{
 		Object val = null;
-		
+
 		switch (col)
 		{
 			case 0:

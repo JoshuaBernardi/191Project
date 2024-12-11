@@ -20,92 +20,94 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import exception.DatabaseException;
 import model.Book;
 import model.FileDatabase;
 import model.Member;
 
 @SuppressWarnings("serial")
 
-//Is-a relationship: AddMemberScreen is a JFrame (inherits from JFrame)
+// Is-a relationship: AddMemberScreen is a JFrame (inherits from JFrame)
 public class AddMemberScreen extends JFrame
 {
 	/**
 	 * member id field
 	 */
-	private JTextField txtMemberID; //has a id field
-	
+	private JTextField txtMemberID; // has a id field
+
 	/**
 	 * password field
 	 */
-	private JPasswordField txtPassword; //has a password field
-	
+	private JPasswordField txtPassword; // has a password field
+
 	/**
 	 * field to confirm the password
 	 */
-	private JPasswordField txtConfirmPassword; //has a confirm password field
-	
+	private JPasswordField txtConfirmPassword; // has a confirm password field
+
 	/**
 	 * name field
 	 */
-	private JTextField txtName; //has a name field
-	
+	private JTextField txtName; // has a name field
+
 	/**
 	 * phone number field
 	 */
-	private JTextField txtPhoneNumber; //has phone number field
-	
+	private JTextField txtPhoneNumber; // has phone number field
+
 	/**
 	 * address field
 	 */
-	private JTextField txtAddress; //has a address field
-	
+	private JTextField txtAddress; // has a address field
+
 	/**
 	 * email field
 	 */
-	private JTextField txtEmail; //has a email field
-	
+	private JTextField txtEmail; // has a email field
+
 	/**
 	 * reference to main screen
 	 */
-	private MainScreen mainScreen; //has a reference to the main screen
-	
+	private MainScreen mainScreen; // has a reference to the main screen
+
 	/**
 	 * constructor
 	 */
-	public AddMemberScreen(MainScreen mainScreen) {
+	public AddMemberScreen(MainScreen mainScreen)
+	{
 
 		this.mainScreen = mainScreen;
-		
-		
-		//TODO, add more fields
+
+		// TODO, add more fields
 		txtMemberID = new JTextField();
 		txtPassword = new JPasswordField();
 		txtConfirmPassword = new JPasswordField();
-		
+
 		txtName = new JTextField();
 		txtPhoneNumber = new JTextField();
 		txtAddress = new JTextField();
 		txtEmail = new JTextField();
-		
-		//buttons
+
+		// buttons
 		JButton btnAddMember = new JButton("Add Member");
 		JButton btnCancel = new JButton("Cancel");
-		
+
 		JPanel pnlMain = new JPanel();
-		pnlMain.setLayout(new GridLayout(8, 2, 10, 10)); //TODO: add more columns
-		
+		pnlMain.setLayout(new GridLayout(8, 2, 10, 10)); // TODO: add more
+															// columns
+
 		pnlMain.add(new JLabel("Member ID: "));
 		pnlMain.add(txtMemberID);
-		
+
 		pnlMain.add(new JLabel("Password: "));
 		pnlMain.add(txtPassword);
-		
+
 		pnlMain.add(new JLabel("Confirmed Password: "));
 		pnlMain.add(txtConfirmPassword);
 
 		pnlMain.add(new JLabel("Member Name: "));
 		pnlMain.add(txtName);
-	
+
 		pnlMain.add(new JLabel("Phone Number: "));
 		pnlMain.add(txtPhoneNumber);
 
@@ -114,50 +116,62 @@ public class AddMemberScreen extends JFrame
 
 		pnlMain.add(new JLabel("Email: "));
 		pnlMain.add(txtEmail);
-		
+
 		pnlMain.add(btnAddMember);
 		pnlMain.add(btnCancel);
-	
-		//github 5
-		
-		//add action for button
+
+		// github 5
+
+		// add action for button
 		btnAddMember.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				addMember();
+				try
+				{
+					addMember();
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
 			}
 		});
-		//cancel button when user clicks button event cancel action is performed 
+		// cancel button when user clicks button event cancel action is
+		// performed
 		btnCancel.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				mainScreen.setVisible(true);
-				dispose(); //free resource, close this screen
+				dispose(); // free resource, close this screen
 			}
 		});
-		
-		add(pnlMain);		
-		
+
+		add(pnlMain);
+
 		setTitle("Add Member Screen");
-		setSize(600, 600); //width and height of screen
-		setLocationRelativeTo(null); //center the screen
+		setSize(600, 600); // width and height of screen
+		setLocationRelativeTo(null); // center the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+
 	/**
 	 * add member to the system
 	 * The member id is unique
 	 * 
 	 * test github change 1
 	 * add book
+	 * 
+	 * @throws DatabaseException
 	 */
-	private void addMember() {
+	private void addMember() throws DatabaseException
+	{
 		String memberID = txtMemberID.getText();
 		String password = txtPassword.getText();
 		String confirmedPass = txtConfirmPassword.getText();
@@ -165,44 +179,54 @@ public class AddMemberScreen extends JFrame
 		String phone = txtPhoneNumber.getText();
 		String address = txtAddress.getText();
 		String email = txtEmail.getText();
-		
+
 		int iMemberID = 0;
-		try {
+		try
+		{
 			iMemberID = Integer.parseInt(memberID);
-		}catch(Exception e) {
-			JOptionPane.showMessageDialog(this, "Member ID must be an integer number");
+		}
+		catch (Exception e)
+		{
+			JOptionPane.showMessageDialog(this,
+					"Member ID must be an integer number");
 			return;
 		}
-		
+
 		Member member = null;
-		for (Member mem : FileDatabase.getDB().getMembers()) {
-			if (mem.getMemberID() == iMemberID) {
+		for (Member mem : FileDatabase.getDB().getMembers())
+		{
+			if (mem.getMemberID() == iMemberID)
+			{
 				member = mem;
 				break;
 			}
 		}
-		
-		if (member != null) {
-			JOptionPane.showMessageDialog(this, "Member ID existing! Please enter different number");
+
+		if (member != null)
+		{
+			JOptionPane.showMessageDialog(this,
+					"Member ID existing! Please enter different number");
 			return;
 		}
-		
-		if (!password.equals(confirmedPass)) {
+
+		if (!password.equals(confirmedPass))
+		{
 			JOptionPane.showMessageDialog(this, "Passwords do not match!");
 			return;
 		}
-		
+
 		member = new Member(iMemberID, password, name, phone, address, email);
-		
+
 		FileDatabase db = FileDatabase.getDB();
 		db.getMembers().add(member);
 		db.save();
-		
-		JOptionPane.showMessageDialog(this, "Member has been added successfully");
-		
-		//close this screen
+
+		JOptionPane.showMessageDialog(this,
+				"Member has been added successfully");
+
+		// close this screen
 		mainScreen.setVisible(true);
 		setVisible(false);
-		
+
 	}
 }

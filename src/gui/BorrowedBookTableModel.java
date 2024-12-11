@@ -30,15 +30,17 @@ public class BorrowedBookTableModel extends AbstractTableModel
 	 * has a column names
 	 * 
 	 */
-	private String[] columnNames = {"Member Name", "Book Title", "Borrowed Date", "Return Date", "Over Due"};
-	
+	private String[] columnNames = { "Member Name", "Book Title",
+			"Borrowed Date", "Return Date", "Over Due" };
+
 	/**
 	 * reference to list of books
 	 */
-	private List<BorrowedBook> borrowedBooks; //has many borrowed books
-	
+	private List<BorrowedBook> borrowedBooks; // has many borrowed books
+
 	/**
 	 * constructor
+	 * 
 	 * @param books list of borrowed books
 	 */
 	public BorrowedBookTableModel(List<BorrowedBook> borrowedBooks)
@@ -54,7 +56,7 @@ public class BorrowedBookTableModel extends AbstractTableModel
 	{
 		return columnNames.length;
 	}
-	
+
 	@Override
 	/**
 	 * get the name of the column [column]
@@ -80,35 +82,39 @@ public class BorrowedBookTableModel extends AbstractTableModel
 	public Object getValueAt(int row, int col)
 	{
 		Object val = null;
-		
+
 		switch (col)
 		{
 			case 0:
-				
+
 				val = borrowedBooks.get(row).getMemberName();
 				break;
 			case 1:
 				val = borrowedBooks.get(row).getBookTitle();
 				break;
 			case 2:
-				val = Configuration.sdf.format(borrowedBooks.get(row).getBorrowedDate());
+				val = Configuration.sdf
+						.format(borrowedBooks.get(row).getBorrowedDate());
 				break;
 			case 3:
-				val = Configuration.sdf.format(borrowedBooks.get(row).getReturnedDate());
+				val = Configuration.sdf
+						.format(borrowedBooks.get(row).getReturnedDate());
 				break;
 			case 4:
-				if (borrowedBooks.get(row).isOverDue()) {
+				if (borrowedBooks.get(row).isOverDue())
+				{
 					val = "Yes";
-				}else {
+				}
+				else
+				{
 					val = "No";
 				}
 				break;
-			//TODO: ADD more case
+			// TODO: ADD more case
 			default:
 				break;
 		}
 		return val;
 	}
-	
 
 }

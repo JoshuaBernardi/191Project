@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import exception.DatabaseException;
 import model.FileDatabase;
 import model.User;
 
@@ -32,39 +33,41 @@ public class LoginScreen extends JFrame
 	/**
 	 * user id field
 	 */
-	private JTextField txtUserID; //has a user id field
-	
+	private JTextField txtUserID; // has a user id field
+
 	/**
 	 * password field
 	 */
-	private JPasswordField txtPassword; //has a password field
-	
+	private JPasswordField txtPassword; // has a password field
+
 	/**
 	 * constructor
 	 */
-	public LoginScreen() {
-		
-		txtUserID = new JTextField(10);;
+	public LoginScreen()
+	{
+
+		txtUserID = new JTextField(10);
+		;
 		txtPassword = new JPasswordField();
-		
-		//buttons
+
+		// buttons
 		JButton btnLogin = new JButton("Login");
-		
+
 		JPanel pnlMain = new JPanel();
 		pnlMain.setLayout(new GridLayout(3, 2, 10, 10));
 		pnlMain.add(new JLabel("ID: "));
 		pnlMain.add(txtUserID);
-		
+
 		pnlMain.add(new JLabel("Password: "));
 		pnlMain.add(txtPassword);
-		
+
 		pnlMain.add(btnLogin);
-		
-		
-		//add action for button
+
+		// add action for button
 		btnLogin.addActionListener(new ActionListener()
 		{
-			
+			// LO7: catch exception
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -74,47 +77,60 @@ public class LoginScreen extends JFrame
 				}
 				catch (LoginException e1)
 				{
-					JOptionPane.showMessageDialog(LoginScreen.this, "Invalid user id, password. Please enter again");
+					JOptionPane.showMessageDialog(LoginScreen.this,
+							"Invalid user id, password. Please enter again");
+					return;
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
 					return;
 				}
 			}
 		});
-		
-		add(pnlMain);		
-		
+
+		add(pnlMain);
+
 		setTitle("Login Screen");
 		setSize(400, 200);
-		setLocationRelativeTo(null); //center the screen
+		setLocationRelativeTo(null); // center the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+
 	/**
 	 * login
 	 * 
 	 * @throws LoginException
+	 * @throws DatabaseException
 	 */
-	private void login() throws LoginException {
-		
+	private void login() throws LoginException, DatabaseException
+	{
+
 		boolean success = false;
 		String id = txtUserID.getText();
 		String pass = txtPassword.getText();
-		
-		for (User user: FileDatabase.getDB().getUsers()) {
-			if (user.getUserID().equals(id) && user.getPassword().equals(pass)) {
+
+		for (User user : FileDatabase.getDB().getUsers())
+		{
+			if (user.getUserID().equals(id) && user.getPassword().equals(pass))
+			{
 				success = true;
 				break;
 			}
 		}
-		
-		if (!success) {
+		// LO7: throw exception
+
+		if (!success)
+		{
 			throw new LoginException();
 		}
-		
-		//success
+
+		// success
 		MainScreen mainScreen = new MainScreen();
 		mainScreen.setVisible(true);
-		
-		setVisible(false);//close this login screen
+
+		setVisible(false);// close this login screen
 	}
 
 }

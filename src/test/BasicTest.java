@@ -23,20 +23,23 @@ public class BasicTest
 	@Test
 	void testValidBorrowedBook()
 	{
-		try {
+		try
+		{
 			Calendar today = Calendar.getInstance();
 			Configuration.currentDate = today.getTime();
-			
+
 			Calendar tomorrow = Calendar.getInstance();
 			tomorrow.add(Calendar.DATE, 1);
-			
-			new BorrowedBook(100, 1, "Join", "Sun", today.getTime(), 
+
+			new BorrowedBook(100, 1, "Join", "Sun", today.getTime(),
 					tomorrow.getTime(), "No");
-		}catch(Exception e) {
+		}
+		catch (Exception e)
+		{
 			fail();
 		}
 	}
-	
+
 	/**
 	 * Test if the borrowed book is not created successfully
 	 */
@@ -45,22 +48,20 @@ public class BasicTest
 	{
 		IllegalArgumentException thrown = assertThrows(
 				IllegalArgumentException.class,
-				
-				() ->{
+
+				() -> {
 					Calendar today = Calendar.getInstance();
 					Configuration.currentDate = today.getTime();
-					
+
 					Calendar tomorrow = Calendar.getInstance();
 					tomorrow.add(Calendar.DATE, 1);
-					
-					//the returned date is before the borrowed date
-					new BorrowedBook(100, 1, "Join", "Sun", tomorrow.getTime(), 
+
+					// the returned date is before the borrowed date
+					new BorrowedBook(100, 1, "Join", "Sun", tomorrow.getTime(),
 							today.getTime(), "No");
-				}
-		);
-		
+				});
+
 		assertTrue(thrown.getMessage().contains("Error"));
-		
-		
+
 	}
 }

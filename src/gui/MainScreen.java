@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 
 import com.toedter.calendar.JCalendar;
 
+import exception.DatabaseException;
 import model.Configuration;
 
 @SuppressWarnings("serial")
@@ -32,126 +33,125 @@ public class MainScreen extends JFrame
 	/**
 	 * system date
 	 */
-	private JLabel lblSystemDate = new JLabel(); //has a system date label
-	
+	private JLabel lblSystemDate = new JLabel(); // has a system date label
+
 	/**
 	 * constructor
 	 */
-	public MainScreen() {
-		
+	public MainScreen()
+	{
+
 		createMenu();
-		
+
 		setTitle("Library System");
 		setSize(1000, 800);
-		setLocationRelativeTo(null); //center the screen
+		setLocationRelativeTo(null); // center the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 	}
-	
+
 	/**
 	 * create menu
 	 */
-	private void createMenu() {
-		
+	private void createMenu()
+	{
+
 		JMenuBar mnuBar = new JMenuBar();
-		
-		//file menu
+
+		// file menu
 		JMenu fileMnu = new JMenu("File");
 		JMenuItem exitMnuItem = new JMenuItem("Exit");
 		fileMnu.add(exitMnuItem);
-		
+
 		mnuBar.add(fileMnu);
-		
-		//book menu
+
+		// book menu
 		JMenu bookMnu = new JMenu("Book");
 		JMenuItem listBooksMnuItem = new JMenuItem("List all books");
-		JMenuItem listBorrowedBooksMnuItem = new JMenuItem("List borrowed books");
-		JMenuItem listAvailableBooksMenuItem = new JMenuItem("List available books");
+		JMenuItem listBorrowedBooksMnuItem = new JMenuItem(
+				"List borrowed books");
+		JMenuItem listAvailableBooksMenuItem = new JMenuItem(
+				"List available books");
 		JMenuItem addBookMnuItem = new JMenuItem("Add Book");
 		JMenuItem editBookMnuItem = new JMenuItem("Edit Book");
-		
+
 		bookMnu.add(listBooksMnuItem);
 		bookMnu.add(listBorrowedBooksMnuItem);
 		bookMnu.add(listAvailableBooksMenuItem);
 		bookMnu.add(addBookMnuItem);
 		bookMnu.add(editBookMnuItem);
-		
+
 		mnuBar.add(bookMnu);
-		
-		//member menu
+
+		// member menu
 		JMenu memberMnu = new JMenu("Member");
 		JMenuItem listAllMembersMnuItem = new JMenuItem("List all members");
 		JMenuItem addMemberMnuItem = new JMenuItem("Add Member");
 		JMenuItem editMemberMnuItem = new JMenuItem("Edit Member");
-			
+
 		memberMnu.add(listAllMembersMnuItem);
 		memberMnu.add(addMemberMnuItem);
 		memberMnu.add(editMemberMnuItem);
-			
+
 		mnuBar.add(memberMnu);
-		
-		//search menu
+
+		// search menu
 		JMenu searchMnu = new JMenu("Search");
 		JMenuItem searchBookMnuItem = new JMenuItem("Search book");
 		JMenuItem searchMemberMnuItem = new JMenuItem("Search Member");
-			
+
 		searchMnu.add(searchBookMnuItem);
 		searchMnu.add(searchMemberMnuItem);
-			
+
 		mnuBar.add(searchMnu);
-		
-		
-		//action menu
+
+		// action menu
 		JMenu actionMnu = new JMenu("Action");
 		JMenuItem borrowBookMnuItem = new JMenuItem("Borrow book");
 		JMenuItem returnBookMnuItem = new JMenuItem("Return book");
-			
+
 		actionMnu.add(borrowBookMnuItem);
 		actionMnu.add(returnBookMnuItem);
-			
+
 		mnuBar.add(actionMnu);
-		
-		
-		
-		//help manu
+
+		// help manu
 		JMenu helpMnu = new JMenu("Help");
 		JMenuItem aboutMnuItem = new JMenuItem("About");
 		helpMnu.add(aboutMnuItem);
 		mnuBar.add(helpMnu);
-		
-		
-		//set date
+
+		// set date
 		JMenu configMnu = new JMenu("Configuration");
 
-		
 		JMenuItem setDateMnuItem = new JMenuItem("Set System Date");
 		configMnu.add(setDateMnuItem);
-			
-		mnuBar.add(configMnu);	
-			
+
+		mnuBar.add(configMnu);
+
 		mnuBar.add(new JLabel(" "));
 		mnuBar.add(lblSystemDate);
-		
-		lblSystemDate.setText("Current Date: " + 
-				Configuration.sdf.format(Configuration.currentDate));
-		
+
+		lblSystemDate.setText("Current Date: "
+				+ Configuration.sdf.format(Configuration.currentDate));
+
 		setJMenuBar(mnuBar);
-		
-		//allow user to set date
+
+		// allow user to set date
 		setDateMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				setDate();
 			}
 		});
-		
-		//set action
+
+		// set action
 		exitMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -160,138 +160,202 @@ public class MainScreen extends JFrame
 		});
 		listBooksMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				openScreen(new BooksListScreen(MainScreen.this));
-				
+				try
+				{
+					openScreen(new BooksListScreen(MainScreen.this));
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
+
 			}
 		});
-		
+
 		listBorrowedBooksMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				openScreen(new BorrowedBooksListScreen(MainScreen.this));
-				
+				try
+				{
+					openScreen(new BorrowedBooksListScreen(MainScreen.this));
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
+
 			}
 		});
-		
+
 		listAvailableBooksMenuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				openScreen(new AvailableBooksListScreen(MainScreen.this));
-				
+				try
+				{
+					openScreen(new AvailableBooksListScreen(MainScreen.this));
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
+
 			}
 		});
-		
-		
-		//when user click Add book menu
+
+		// when user click Add book menu
 		addBookMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				openScreen(new AddBookScreen(MainScreen.this));
-				
+				try
+				{
+					openScreen(new AddBookScreen(MainScreen.this));
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
+
 			}
 		});
-		
+
 		editBookMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				openScreen(new EditBookScreen(MainScreen.this));
+				try
+				{
+					openScreen(new EditBookScreen(MainScreen.this));
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
 			}
 		});
-		
+
 		addMemberMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				openScreen(new AddMemberScreen(MainScreen.this));
-				
+
 			}
 		});
-		
-		//when borrow book item is clicked
+
+		// when borrow book item is clicked
 		borrowBookMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				openScreen(new BorrowBookScreen(MainScreen.this));
-				
+
 			}
 		});
-		
-		listAllMembersMnuItem .addActionListener(new ActionListener()
+
+		listAllMembersMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				openScreen(new MemberListScreen(MainScreen.this));
+				try
+				{
+					openScreen(new MemberListScreen(MainScreen.this));
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
 			}
 		});
-		
+
 		editMemberMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				openScreen(new EditMemberScreen(MainScreen.this));
 			}
 		});
-		
+
 		searchBookMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				openScreen(new SearchBooksScreen(MainScreen.this));
-				
+				try
+				{
+					openScreen(new SearchBooksScreen(MainScreen.this));
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
+
 			}
 		});
-		
+
 		searchMemberMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				openScreen(new SearchMembersScreen(MainScreen.this));
+				try
+				{
+					openScreen(new SearchMembersScreen(MainScreen.this));
+				}
+				catch (DatabaseException e1)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Database error! Contact the administration for help");
+				}
 			}
 		});
-		
+
 		aboutMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				JOptionPane.showMessageDialog(MainScreen.this, "Author: Joshua Bernardi, "
-						+ "Zalma Farah. Copyright @2024");
+				JOptionPane.showMessageDialog(MainScreen.this,
+						"Author: Joshua Bernardi, "
+								+ "Zalma Farah. Copyright @2024");
 			}
 		});
-		
+
 		returnBookMnuItem.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -299,50 +363,53 @@ public class MainScreen extends JFrame
 			}
 		});
 	}
-	
+
 	/**
 	 * set system date
 	 */
-	private void setDate() {
-		
+	private void setDate()
+	{
+
 		JFrame frame = new JFrame("Set up system date");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(40, 40);
 		frame.setLayout(new FlowLayout());
-		
+
 		JDialog dialog = new JDialog(frame, "Set Date", true);
 		dialog.setSize(300, 300);
 		dialog.setLayout(new BorderLayout());
-		
+
 		JCalendar calendar = new JCalendar();
 		calendar.setDate(Configuration.currentDate);
-		
+
 		JButton btnSelect = new JButton("Select Date");
 		btnSelect.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				Configuration.currentDate = calendar.getDate();
-				lblSystemDate.setText("Current Date: " + 
-						Configuration.sdf.format(Configuration.currentDate));
+				lblSystemDate.setText("Current Date: "
+						+ Configuration.sdf.format(Configuration.currentDate));
 				dialog.dispose();
 			}
 		});
 		dialog.add(calendar, BorderLayout.CENTER);
 		dialog.add(btnSelect, BorderLayout.SOUTH);
-		
+
 		dialog.setVisible(true);
 		frame.setVisible(true);
 	}
-	
+
 	/**
 	 * open the screen
 	 * close this main screen
+	 * 
 	 * @param screen
 	 */
-	private void openScreen(JFrame screen) {
+	private void openScreen(JFrame screen)
+	{
 		setVisible(false);
 		screen.setVisible(true);
 	}

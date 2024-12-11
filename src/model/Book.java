@@ -5,62 +5,64 @@
  */
 package model;
 
-public class Book {
-	
+// LO1 - encapsulation
+public class Book
+{
+
 	/*
 	 * id of the book
 	 */
-	private int bookID; //has a id
-	
+	private int bookID; // has a id
+
 	/**
 	 * subject of the book
 	 */
-	private String subject; //has a subject
-	
+	private String subject; // has a subject
+
 	/**
 	 * title of the book
 	 */
-	private String title; //has a title
-	
+	private String title; // has a title
+
 	/**
 	 * author
 	 */
-	private String author; //has a author
-	
+	private String author; // has a author
+
 	/**
 	 * publisher
 	 */
-	private String publisher;//has a publisher
-	
+	private String publisher;// has a publisher
+
 	/**
 	 * copyright
 	 */
-	private String copyright; //has a copyright
-	
+	private String copyright; // has a copyright
+
 	/**
 	 * edition
 	 */
-	private int edition; //has a edition
-	
+	private int edition; // has a edition
+
 	/**
 	 * pages
 	 */
-	private int numPages; //has a number
-	
+	private int numPages; // has a number
+
 	/**
 	 * ISBN
 	 */
-	private String isbn; //has a ISBN
-	
+	private String isbn; // has a ISBN
+
 	/**
 	 * total number of copies of the book
 	 */
-	private int totalCopies; //has a number of copies
-	
+	private int totalCopies; // has a number of copies
+
 	/**
 	 * number of boo copies available
 	 */
-	private int availableCopies; //has a available of copies
+	private int availableCopies; // has a available of copies
 
 	/**
 	 * constructor
@@ -271,4 +273,3 @@ public class Book {
 		this.availableCopies = availableCopies;
 	}
 }
-

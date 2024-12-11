@@ -12,40 +12,40 @@ public class BorrowedBook
 	/**
 	 * member id that borrows the book
 	 */
-	private int userID; //has a member id
-	
+	private int userID; // has a member id
+
 	/**
 	 * book id
 	 */
-	private int bookID; //has a book id
-	
+	private int bookID; // has a book id
+
 	/**
 	 * member name
 	 */
-	private String memberName; //has a member name
-	
+	private String memberName; // has a member name
+
 	/**
 	 * book title
 	 */
-	private String bookTitle;	//has a book title
-	
+	private String bookTitle; // has a book title
+
 	/**
 	 * borrowed date
 	 */
-	private Date borrowedDate; //has a borrowed date
-	
+	private Date borrowedDate; // has a borrowed date
+
 	/**
 	 * return date
 	 */
-	private Date returnedDate; //has a returned date
-	
+	private Date returnedDate; // has a returned date
+
 	/**
 	 * if the book is returned or not
 	 * 
 	 * has a returned string (Yes or No)
 	 */
 	private String returned; // Yes or No (if the book has been returned)
-	
+
 	/**
 	 * constructor
 	 * 
@@ -61,8 +61,10 @@ public class BorrowedBook
 			String bookTitle, Date borrowedDate, Date returnedDate,
 			String returned)
 	{
-		if (returnedDate.before(borrowedDate)) {
-			throw new IllegalArgumentException("Error: The returned date must be after or equal the borrowed date");
+		if (returnedDate.before(borrowedDate))
+		{
+			throw new IllegalArgumentException(
+					"Error: The returned date must be after or equal the borrowed date");
 		}
 		this.userID = userID;
 		this.bookID = bookID;
@@ -72,6 +74,7 @@ public class BorrowedBook
 		this.returnedDate = returnedDate;
 		this.returned = returned;
 	}
+
 	/**
 	 * @return the userID
 	 */
@@ -79,6 +82,7 @@ public class BorrowedBook
 	{
 		return userID;
 	}
+
 	/**
 	 * @param userID the userID to set
 	 */
@@ -86,6 +90,7 @@ public class BorrowedBook
 	{
 		this.userID = userID;
 	}
+
 	/**
 	 * @return the bookID
 	 */
@@ -93,6 +98,7 @@ public class BorrowedBook
 	{
 		return bookID;
 	}
+
 	/**
 	 * @param bookID the bookID to set
 	 */
@@ -100,6 +106,7 @@ public class BorrowedBook
 	{
 		this.bookID = bookID;
 	}
+
 	/**
 	 * @return the memberName
 	 */
@@ -107,6 +114,7 @@ public class BorrowedBook
 	{
 		return memberName;
 	}
+
 	/**
 	 * @param memberName the memberName to set
 	 */
@@ -114,6 +122,7 @@ public class BorrowedBook
 	{
 		this.memberName = memberName;
 	}
+
 	/**
 	 * @return the bookTitle
 	 */
@@ -121,6 +130,7 @@ public class BorrowedBook
 	{
 		return bookTitle;
 	}
+
 	/**
 	 * @param bookTitle the bookTitle to set
 	 */
@@ -128,6 +138,7 @@ public class BorrowedBook
 	{
 		this.bookTitle = bookTitle;
 	}
+
 	/**
 	 * @return the borrowedDate
 	 */
@@ -135,6 +146,7 @@ public class BorrowedBook
 	{
 		return borrowedDate;
 	}
+
 	/**
 	 * @param borrowedDate the borrowedDate to set
 	 */
@@ -142,6 +154,7 @@ public class BorrowedBook
 	{
 		this.borrowedDate = borrowedDate;
 	}
+
 	/**
 	 * @return the returnedDate
 	 */
@@ -149,6 +162,7 @@ public class BorrowedBook
 	{
 		return returnedDate;
 	}
+
 	/**
 	 * @param returnedDate the returnedDate to set
 	 */
@@ -156,6 +170,7 @@ public class BorrowedBook
 	{
 		this.returnedDate = returnedDate;
 	}
+
 	/**
 	 * @return the returned
 	 */
@@ -163,6 +178,7 @@ public class BorrowedBook
 	{
 		return returned;
 	}
+
 	/**
 	 * @param returned the returned to set
 	 */
@@ -170,13 +186,15 @@ public class BorrowedBook
 	{
 		this.returned = returned;
 	}
-	
+
 	/**
 	 * check if the borrow is over due
+	 * 
 	 * @return true/false
 	 */
-	public boolean isOverDue() {
+	public boolean isOverDue()
+	{
 		return returnedDate.before(Configuration.currentDate);
 	}
-	
+
 }

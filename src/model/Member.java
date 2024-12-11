@@ -1,41 +1,43 @@
 package model;
+
 /**
  * Author: Joshua Bernardi, Zalma Farah
  * 
  * Member represents a user that can borrow, return book
  */
-public class Member {
-	
+public class Member
+{
+
 	/**
 	 * id
 	 */
-	private int memberID; //has a id
-	
+	private int memberID; // has a id
+
 	/**
 	 * password
 	 */
-	private String password;//has a password
-	
+	private String password;// has a password
+
 	/**
 	 * name
 	 */
-	private String name; //has a name
-	
+	private String name; // has a name
+
 	/**
 	 * phone number
 	 */
-	private String phoneNumber; //has a phone number
-	
+	private String phoneNumber; // has a phone number
+
 	/**
 	 * address
 	 */
-	private String address; //has a address
-	
+	private String address; // has a address
+
 	/**
 	 * email
 	 */
-	private String email; //has a email
-	
+	private String email; // has a email
+
 	/**
 	 * constructor
 	 * 
@@ -152,6 +154,5 @@ public class Member {
 	{
 		this.email = email;
 	}
-	
-	
+
 }

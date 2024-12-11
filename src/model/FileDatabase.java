@@ -8,7 +8,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import exception.DataInvalidFormatException;
+import exception.DatabaseException;
 
 /**
  * Author: Joshua Bernardi, Zalma Farah
@@ -17,258 +20,350 @@ import exception.DataInvalidFormatException;
  * 
  * FileDatabase is-a Database
  */
+// LO1: inheritance
 public class FileDatabase extends Database
+// LO4, this class inherits the books, users from super class Database
+
 {
-	
+
 	/**
 	 * unique database object
 	 * 
 	 * singleton design pattern
 	 * that allows to use ONE instance of FileDatabase in the whole system
 	 */
-	private static  FileDatabase db;  //has a static object
+	private static FileDatabase db; // has a static object
+	// LO8: read from file text I/O
 
 	@Override
 	public void initialize() throws DataInvalidFormatException
 	{
+		// reset
+		getMembers().clear();
+		getUsers().clear();
+		getBooks().clear();
+		getBorrowedBooks().clear();
+
 		// read files
-		books = new ArrayList<Book>();
-		
-		
-		//will load from books.txt
+
+		// will load from books.txt
+		Scanner bookScanner = null;
 		try
 		{
-			Scanner scanner = new Scanner(new File(Configuration.BOOKS_FILENAME));
-			
-			while (scanner.hasNext()) {
-				
-				String line = scanner.nextLine();
+			bookScanner = new Scanner(new File(Configuration.BOOKS_FILENAME));
+
+			while (bookScanner.hasNext())
+			{
+
+				String line = bookScanner.nextLine();
 				String[] data = line.split(";");
-				
-				Book book = new Book(Integer.parseInt(data[0]), 
-						data[1], data[2], data[3], data[4], data[5],
-						Integer.parseInt(data[6]), 
-						Integer.parseInt(data[7]), 
-						data[8], 
-						Integer.parseInt(data[9]), 
+
+				Book book = new Book(Integer.parseInt(data[0]), data[1],
+						data[2], data[3], data[4], data[5],
+						Integer.parseInt(data[6]), Integer.parseInt(data[7]),
+						data[8], Integer.parseInt(data[9]),
 						Integer.parseInt(data[10]));
-				
-				books.add(book);
+
+				getBooks().add(book);
 			}
-			
-			scanner.close();
+
 		}
 		catch (FileNotFoundException e)
 		{
-			//e.printStackTrace();
+			// ignore
 		}
-		
-		
-		borrowedBooks = new ArrayList<>();
-		
-		
-		//will load from borrowed books.txt
+		finally
+		{
+			if (bookScanner != null)
+			{
+				bookScanner.close();
+			}
+		}
+
+		// will load from borrowed books.txt
+		Scanner borrowedBookScanner = null;
 		try
 		{
-			Scanner scanner = new Scanner(new File(Configuration.BORROWED_BOOKS_FILENAME));
-			
-			while (scanner.hasNext()) {
-				
-				String line = scanner.nextLine();
+			borrowedBookScanner = new Scanner(
+					new File(Configuration.BORROWED_BOOKS_FILENAME));
+
+			while (borrowedBookScanner.hasNext())
+			{
+
+				String line = borrowedBookScanner.nextLine();
 				String[] data = line.split(";");
-				
-				//user id, book id, borrowed date, return date
+
+				// user id, book id, borrowed date, return date
 				try
 				{
-					BorrowedBook bb = new BorrowedBook(Integer.parseInt(data[0]), 
+					BorrowedBook bb = new BorrowedBook(
+							Integer.parseInt(data[0]),
 							Integer.parseInt(data[1]), data[2], data[3],
-							Configuration.sdf.parse(data[4]), Configuration.sdf.parse(data[5]), data[6]);
-					
-					borrowedBooks.add(bb);
+							Configuration.sdf.parse(data[4]),
+							Configuration.sdf.parse(data[5]), data[6]);
+
+					getBorrowedBooks().add(bb);
 				}
 				catch (Exception e)
 				{
 					throw new DataInvalidFormatException();
 				}
 			}
-			
-			scanner.close();
 		}
 		catch (FileNotFoundException e)
 		{
-			//e.printStackTrace();
+			// ignore it
 		}
-		
-		subjects = new String[]{"Math", "Science", "History", "Art", "Cooking", "Language", "Cars"};
-		
-		members = new ArrayList<Member>();
-		
-		//will load from members.txt
+		finally
+		{
+			if (borrowedBookScanner != null)
+			{
+				borrowedBookScanner.close();
+			}
+		}
+
+		// will load from members.txt
+		Scanner memberScanner = null;
 		try
 		{
-			Scanner scanner = new Scanner(new File(Configuration.MEMBERS_FILENAME));
-			
-			while (scanner.hasNext()) {
-				
-				String line = scanner.nextLine();
+			memberScanner = new Scanner(
+					new File(Configuration.MEMBERS_FILENAME));
+
+			while (memberScanner.hasNext())
+			{
+
+				String line = memberScanner.nextLine();
 				String[] data = line.split(";");
-				
-				//member id, pass, name, phone, address, email
+
+				// member id, pass, name, phone, address, email
 				try
 				{
-					Member member = new Member(Integer.parseInt(data[0])
-										, data[1], data[2], data[3], data[4], data[5]);
-					members.add(member);
+					Member member = new Member(Integer.parseInt(data[0]),
+							data[1], data[2], data[3], data[4], data[5]);
+					getMembers().add(member);
 				}
 				catch (Exception e)
 				{
 					throw new DataInvalidFormatException();
 				}
 			}
-			
-			scanner.close();
+
 		}
 		catch (FileNotFoundException e)
 		{
-			//e.printStackTrace();
+			// ignore
 		}
-		
-		users = new ArrayList<User>();
-		
-		//will load from members.txt
+		finally
+		{
+			if (memberScanner != null)
+			{
+				memberScanner.close();
+			}
+		}
+
+		// will load from members.txt
+		Scanner userScanner = null;
 		try
 		{
-			Scanner scanner = new Scanner(new File(Configuration.USERS_FILENAME));
-			
-			while (scanner.hasNext()) {
-				
-				String line = scanner.nextLine();
+			userScanner = new Scanner(new File(Configuration.USERS_FILENAME));
+
+			while (userScanner.hasNext())
+			{
+
+				String line = userScanner.nextLine();
 				String[] data = line.split(";");
-				
-				//user id, pass
+
+				// user id, pass
 				try
 				{
 					User user = new User(data[0], data[1]);
-					users.add(user);
+					getUsers().add(user);
 				}
 				catch (Exception e)
 				{
 					throw new DataInvalidFormatException();
 				}
 			}
-			
-			scanner.close();
+
+			userScanner.close();
 		}
 		catch (FileNotFoundException e)
 		{
-			//e.printStackTrace();
+			// ignore
 		}
-		
+		finally
+		{
+			if (userScanner != null)
+			{
+				userScanner.close();
+			}
+		}
+
 	}
+	// LO8: read from file text I/O
 
 	@Override
-	public void save()
+	public void save() throws DatabaseException
 	{
 		// save files
+		FileWriter bookWriter = null;
 		try
 		{
-			FileWriter writer = new FileWriter(Configuration.BOOKS_FILENAME);
-			
-			for (Book book: books) {
-				writer.write(String.valueOf(book.getBookID()));
-				writer.write(";");
-				writer.write(book.getSubject());
-				writer.write(";");
-				writer.write(book.getTitle());
-				writer.write(";");
-				writer.write(book.getAuthor());
-				writer.write(";");
-				writer.write(book.getPublisher());
-				writer.write(";");
-				writer.write(book.getCopyright());
-				writer.write(";");
-				writer.write(String.valueOf(book.getEdition()));
-				writer.write(";");
-				writer.write(String.valueOf(book.getNumPages()));
-				writer.write(";");
-				writer.write(book.getIsbn());
-				writer.write(";");
-				writer.write(String.valueOf(book.getTotalCopies()));
-				writer.write(";");
-				writer.write(String.valueOf(book.getAvailableCopies()));
-				
-				writer.write(System.lineSeparator());
-				
+			bookWriter = new FileWriter(Configuration.BOOKS_FILENAME);
+
+			for (Book book : getBooks())
+			{
+				bookWriter.write(String.valueOf(book.getBookID()));
+				bookWriter.write(";");
+				bookWriter.write(book.getSubject());
+				bookWriter.write(";");
+				bookWriter.write(book.getTitle());
+				bookWriter.write(";");
+				bookWriter.write(book.getAuthor());
+				bookWriter.write(";");
+				bookWriter.write(book.getPublisher());
+				bookWriter.write(";");
+				bookWriter.write(book.getCopyright());
+				bookWriter.write(";");
+				bookWriter.write(String.valueOf(book.getEdition()));
+				bookWriter.write(";");
+				bookWriter.write(String.valueOf(book.getNumPages()));
+				bookWriter.write(";");
+				bookWriter.write(book.getIsbn());
+				bookWriter.write(";");
+				bookWriter.write(String.valueOf(book.getTotalCopies()));
+				bookWriter.write(";");
+				bookWriter.write(String.valueOf(book.getAvailableCopies()));
+
+				bookWriter.write(System.lineSeparator());
+
 			}
-			writer.close();
-			
-			
-			writer = new FileWriter(Configuration.BORROWED_BOOKS_FILENAME);
-			
-			for (BorrowedBook borrowedBook: borrowedBooks) {
-				writer.write(String.valueOf(borrowedBook.getUserID()));
-				writer.write(";");
-				writer.write(String.valueOf(borrowedBook.getBookID()));
-				writer.write(";");
-				writer.write(borrowedBook.getMemberName());
-				writer.write(";");
-				writer.write(borrowedBook.getBookTitle());
-				writer.write(";");
-				writer.write(Configuration.sdf.format(borrowedBook.getBorrowedDate()));
-				writer.write(";");
-				writer.write(Configuration.sdf.format(borrowedBook.getReturnedDate()));
-				writer.write(";");
-				writer.write(borrowedBook.getReturned());
-				
-				writer.write(System.lineSeparator());
-				
-			}
-			writer.close();
-			
-			writer = new FileWriter(Configuration.MEMBERS_FILENAME);
-			
-			for (Member member: members) {
-				writer.write(String.valueOf(member.getMemberID()));
-				writer.write(";");
-				writer.write(member.getPassword());
-				writer.write(";");
-				writer.write(member.getName());
-				writer.write(";");
-				writer.write(member.getPhoneNumber());
-				writer.write(";");
-				writer.write(member.getAddress());
-				writer.write(";");
-				writer.write(member.getEmail());
-				
-				writer.write(System.lineSeparator());
-				
-			}
-			writer.close();
-		
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			throw new DatabaseException();
+		}
+		finally
+		{
+			if (bookWriter != null)
+			{
+				try
+				{
+					bookWriter.close();
+				}
+				catch (IOException e)
+				{
+					throw new DatabaseException();
+				}
+			}
+		}
+
+		FileWriter borrowedBookWriter = null;
+		try
+		{
+			borrowedBookWriter = new FileWriter(
+					Configuration.BORROWED_BOOKS_FILENAME);
+
+			for (BorrowedBook borrowedBook : getBorrowedBooks())
+			{
+				borrowedBookWriter
+						.write(String.valueOf(borrowedBook.getUserID()));
+				borrowedBookWriter.write(";");
+				borrowedBookWriter
+						.write(String.valueOf(borrowedBook.getBookID()));
+				borrowedBookWriter.write(";");
+				borrowedBookWriter.write(borrowedBook.getMemberName());
+				borrowedBookWriter.write(";");
+				borrowedBookWriter.write(borrowedBook.getBookTitle());
+				borrowedBookWriter.write(";");
+				borrowedBookWriter.write(Configuration.sdf
+						.format(borrowedBook.getBorrowedDate()));
+				borrowedBookWriter.write(";");
+				borrowedBookWriter.write(Configuration.sdf
+						.format(borrowedBook.getReturnedDate()));
+				borrowedBookWriter.write(";");
+				borrowedBookWriter.write(borrowedBook.getReturned());
+
+				borrowedBookWriter.write(System.lineSeparator());
+
+			}
+		}
+		catch (IOException e)
+		{
+			throw new DatabaseException();
+		}
+		finally
+		{
+			if (borrowedBookWriter != null)
+			{
+				try
+				{
+					borrowedBookWriter.close();
+				}
+				catch (IOException e)
+				{
+					throw new DatabaseException();
+				}
+			}
+		}
+
+		FileWriter memberWriter = null;
+		try
+		{
+			memberWriter = new FileWriter(Configuration.MEMBERS_FILENAME);
+
+			for (Member member : getMembers())
+			{
+				memberWriter.write(String.valueOf(member.getMemberID()));
+				memberWriter.write(";");
+				memberWriter.write(member.getPassword());
+				memberWriter.write(";");
+				memberWriter.write(member.getName());
+				memberWriter.write(";");
+				memberWriter.write(member.getPhoneNumber());
+				memberWriter.write(";");
+				memberWriter.write(member.getAddress());
+				memberWriter.write(";");
+				memberWriter.write(member.getEmail());
+
+				memberWriter.write(System.lineSeparator());
+
+			}
+
+		}
+		catch (IOException e)
+		{
+			throw new DatabaseException();
+		}
+		finally
+		{
+			if (memberWriter != null)
+			{
+				try
+				{
+					memberWriter.close();
+				}
+				catch (IOException e)
+				{
+					throw new DatabaseException();
+				}
+			}
 		}
 	}
-	
+
 	/**
 	 * get unique instance of the database
+	 * 
 	 * @return database
 	 */
-	public static FileDatabase getDB() {
-		if (db == null) {
+	public static FileDatabase getDB() throws DatabaseException
+	{
+		if (db == null)
+		{
 			db = new FileDatabase();
-			try
-			{
-				db.initialize();
-			}
-			catch (DataInvalidFormatException e)
-			{
-				e.printStackTrace();
-			}
+			db.initialize();
 		}
-		
+
 		return db;
 	}
 

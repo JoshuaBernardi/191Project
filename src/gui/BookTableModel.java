@@ -27,15 +27,17 @@ public class BookTableModel extends AbstractTableModel
 	 * has-a column names
 	 * 
 	 */
-	private String[] columnNames = {"Book ID", "Subject", "Title", "Publisher"};
-	
+	private String[] columnNames = { "Book ID", "Subject", "Title",
+			"Publisher" };
+
 	/**
 	 * reference to list of books
 	 */
-	private List<Book> books; //has many books
-	
+	private List<Book> books; // has many books
+
 	/**
 	 * constructor
+	 * 
 	 * @param books
 	 */
 	public BookTableModel(List<Book> books)
@@ -51,7 +53,7 @@ public class BookTableModel extends AbstractTableModel
 	{
 		return columnNames.length;
 	}
-	
+
 	@Override
 	/**
 	 * get the name of the column [column]
@@ -77,11 +79,11 @@ public class BookTableModel extends AbstractTableModel
 	public Object getValueAt(int row, int col)
 	{
 		Object val = null;
-		
+
 		switch (col)
 		{
 			case 0:
-				
+
 				val = books.get(row).getBookID();
 				break;
 			case 1:
@@ -93,7 +95,7 @@ public class BookTableModel extends AbstractTableModel
 			case 3:
 				val = books.get(row).getPublisher();
 				break;
-			//TODO: ADD more case
+			// TODO: ADD more case
 			default:
 				break;
 		}
