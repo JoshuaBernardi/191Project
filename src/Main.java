@@ -3,7 +3,7 @@ import gui.LoginScreen;
 
 /**
  * Author: Joshua Bernardi, Zalma Farah
- * test if git 
+ * test if git  a
  * class as the starting point for the application
  * 
  * This program is the GUI that manages the library
